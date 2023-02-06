@@ -1,0 +1,15 @@
+.main-container{
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  aside{
+    flex: 1;
+    min-width: 200px;
+    max-width: 240px;
+    padding-top: 15px;
+    overflow-y: auto;
+  }
+  main{
+    flex: 3;
+  }
+}

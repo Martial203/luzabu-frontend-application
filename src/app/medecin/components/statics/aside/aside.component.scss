@@ -1,0 +1,39 @@
+.aside{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  p{
+    text-align: center;
+  }
+  figure{
+    flex: 1;
+    width: 194px;
+    height: 182px;
+    margin-left: auto;
+    text-align: center;
+    margin-bottom: auto;
+    img{
+      width: 70%;
+      height: 60%;
+      border-style: solid;
+      border-width: 1px;
+      border-color: #ffffff;
+      border-radius: 50%;
+    }
+    legend{
+      border-bottom: solid;
+      border-bottom-color: #e2e5ff;
+      margin-bottom: 12px;
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+  }
+  div{
+    flex: 3;
+    margin-top: 15px;
+    mat-nav-list{
+      padding-top: 0px;
+    }
+  }
+}

@@ -1,0 +1,36 @@
+<div class="mein-container">
+  <app-patient-id></app-patient-id>
+  <div class="form-container">
+    <form>
+      <div class="drug-caracteristics">
+        <mat-form-field>
+          <mat-label>Nom du médicament</mat-label>
+          <input matInput type="text" placeholder="Nom du médicament">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Famille du médicament</mat-label>
+          <input matInput type="text" placeholder="Famille du médicament">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Forme du médicament</mat-label>
+          <input matInput type="text" placeholder="Forme du médicament">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Dosage du médicament</mat-label>
+          <input matInput type="text" placeholder="Dosage du médicament">
+        </mat-form-field>
+      </div>
+      <div class="traitement">
+        <mat-form-field>
+          <mat-label>Posologie usuelle</mat-label>  
+          <textarea matInput placeholder="Posologie usuelle"></textarea>
+        </mat-form-field>
+        <app-chips-input label="Observations" placeholder="Nouvelle observation..."></app-chips-input>
+      </div>
+      <div class="add-icon"><mat-icon>add</mat-icon></div>
+    </form>
+  </div>
+  <div>
+    <app-mini-footer></app-mini-footer>
+  </div>
+</div>

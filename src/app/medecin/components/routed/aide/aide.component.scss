@@ -1,0 +1,50 @@
+.aide{
+  .tutoriels{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 35px;
+    figure{
+      flex: 1;
+      border: solid;
+      margin: 2px;
+      height: 150px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  .message{
+    h2{
+      text-align: center;
+      text-decoration: underline;
+    }
+    form{
+      .identite{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+      }
+      .contenu{
+        width: 100%;
+        mat-form-field{
+          display: block;
+          margin: auto;
+          text-align: center;
+          label{
+            display: block;
+            width: 100%;
+            text-align: center;
+          }
+          textarea{
+            width: 50%;
+            height: 50px;
+          }
+        }
+      }
+      .button{
+        text-align: center;
+      }
+    }
+  }
+}

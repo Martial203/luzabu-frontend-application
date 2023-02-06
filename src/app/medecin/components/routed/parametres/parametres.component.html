@@ -1,0 +1,55 @@
+<div>
+  <div class="account-management">
+    <h2><mat-icon>key</mat-icon>Gestion de compte</h2>
+    
+    <mat-accordion>
+
+      <mat-expansion-panel hideToogle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>user_profile</mat-icon>Modifier mes informations
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-update-my-profile></app-update-my-profile>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>delete</mat-icon>Supprimer mon compte
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-delete-my-account></app-delete-my-account>
+      </mat-expansion-panel>
+
+    </mat-accordion>
+
+  </div>
+
+  <div class="content-management">
+    <h2><mat-icon>screen</mat-icon>Gestion de contenu</h2>
+      
+    <div>
+      <mat-button-toggle>
+        <mat-icon>world</mat-icon>Changer la langue (Français, Anglais)
+      </mat-button-toggle>
+      <div></div>
+    </div>
+    
+    <div>
+      <mat-button-toggle>
+        <mat-icon>draw</mat-icon>Changer le thème (Clair, Sombre)
+      </mat-button-toggle>
+      <div><label for="theme-toggle">Sombre</label><mat-slide-toggle id="theme-toggle"></mat-slide-toggle><label for="theme-toggle">Clair</label></div>
+    </div>
+    
+    <div>
+      <mat-button-toggle>
+        <mat-icon>size</mat-icon>Modifier la taille de la police (Petite, Moyenne, Grande)
+      </mat-button-toggle>
+      <div>
+        <app-font-size-selection></app-font-size-selection>
+      </div>
+    </div>  
+  </div>
+</div>
