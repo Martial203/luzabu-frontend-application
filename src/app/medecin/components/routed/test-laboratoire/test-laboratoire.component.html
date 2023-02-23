@@ -1,16 +1,30 @@
-<div>
+<div class="main-container">
   <app-patient-id></app-patient-id>
-  <div>
-    <form>
-      <div>
-        <mat-form-field><mat-label>Type de test</mat-label><input type="text" placeholder="Type de test"></mat-form-field>
-        <mat-form-field><mat-label>Résultat</mat-label><input type="text" placeholder="Résultat"></mat-form-field>
-        <mat-form-field><mat-label>Nom du laboratoire</mat-label><input type="text" placeholder="Nom du laboratoire"></mat-form-field>
+  <div class="form-container">
+    <form #laboForm="ngForm">
+      <div *ngFor="let test of testForm; let i=index" [formGroup]="test">
+        <div class="bloc1">
+          <mat-form-field>
+            <mat-label>Type de test</mat-label>
+            <input matInput type="text" placeholder="Type de test" formControlName="type">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Résultat</mat-label>
+            <input matInput type="text" placeholder="Résultat" formControlName="result">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Nom du laboratoire</mat-label>
+            <input matInput type="text" placeholder="Nom du laboratoire" formControlName="laboratoire">
+          </mat-form-field>
+        </div>
+        <div class="bloc2">
+          <app-chips-input label="Remarques" placeholder="Nouvelle remarque..." [width]="100" [min_width]="300" [height]="100" (value)="getRemarques($event, i)"></app-chips-input>
+        </div>
       </div>
-      <div><app-chips-input label="Remarques" placeholder="Nouvelle remarque..."></app-chips-input></div>
     </form>
+    <div class="add-button" (click)="onAddTest()"><button mat-mini-fab><mat-icon>add</mat-icon></button></div>
   </div>
-  <div>
-    <app-mini-footer></app-mini-footer>
+  <div class="footer">
+    <app-mini-footer (images)="getImages($event)" (submit)="onSubmit()" [disabled]="mainForm.invalid"></app-mini-footer>
   </div>
 </div>

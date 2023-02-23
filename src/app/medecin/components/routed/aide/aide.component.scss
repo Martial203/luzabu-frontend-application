@@ -6,8 +6,8 @@
     figure{
       flex: 1;
       border: solid;
-      margin: 2px;
-      height: 150px;
+      margin: 3px;
+      height: 175px;
       display: flex;
       flex-direction: row;
       justify-content: center;
@@ -15,6 +15,8 @@
     }
   }
   .message{
+    padding: 20px 15px;
+    background-color: rgba(0, 85, 255, 0.555);
     h2{
       text-align: center;
       text-decoration: underline;
@@ -24,21 +26,28 @@
         display: flex;
         flex-direction: row;
         justify-content: space-around;
+        label{
+          margin-right: 5px;
+        }
       }
       .contenu{
         width: 100%;
+        div{
+          text-align: center;
+        }
         mat-form-field{
           display: block;
           margin: auto;
           text-align: center;
+          width: 50%;
           label{
             display: block;
             width: 100%;
             text-align: center;
           }
           textarea{
-            width: 50%;
-            height: 50px;
+            // width: 50%;
+            // height: 50px;
           }
         }
       }

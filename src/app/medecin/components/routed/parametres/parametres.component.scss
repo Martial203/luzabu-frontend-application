@@ -1,0 +1,73 @@
+.main-container{
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  height: 90%;
+  .account-management{
+    flex: 1;
+    padding: 2px;
+    background-color: rgba(61, 57, 57, 0.507);
+    margin-bottom: 10px;
+    h2{
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.438);
+    }
+    mat-accordion{
+      mat-expansion-panel{
+        margin: 20px;
+        background-color: rgba(0, 0, 0, 0);
+      }
+    }
+  }
+  .content-management{
+    flex: 1;
+    padding: 2px;
+    background-color: rgba(61, 57, 57, 0.507);
+    margin-top: 10px;
+    h2{
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.438);
+    }
+    .option{
+      display: flex;
+      flex-direction: row;
+      p{
+        flex: 1;
+        // display: block;
+        background-color: rgba(0, 0, 0, 0);
+        padding: 15px 10px;
+        margin: auto;
+        display: flex;
+        flex-direction: row;
+        &:hover{
+          background-color: rgba(0, 0, 0, 0.08);
+        }
+        mat-icon{
+          vertical-align: middle;
+          margin-right: 5px;
+        }
+      }
+      div{
+        flex: 1;
+        padding-left: 15px;
+      }
+      .language{
+        padding-left: 0px;
+        position: relative;
+        right: 5px;
+        mat-radio-button{
+          margin-right: 15px;
+        }
+      }
+      .theme{
+        padding-top: 17px;
+        .dark{
+          margin-right: 8px;
+        }
+        .light{
+          margin-left: 8px;
+        }
+      }
+    }
+  }
+}

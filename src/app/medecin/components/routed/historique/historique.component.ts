@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-historique',
   templateUrl: './historique.component.html',
-  styleUrls: ['./historique.component.scss']
+  styleUrls: ['./historique.component.scss', '../profil/profil.component.scss']
 })
 export class HistoriqueComponent {
 

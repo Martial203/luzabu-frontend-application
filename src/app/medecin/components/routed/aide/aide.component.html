@@ -7,13 +7,14 @@
     <h2>Posez votre problème</h2>
     <form>
       <div class="identite">
-        <mat-form-field><label for="name">Nom(s) et prénom(s)</label><input type="text"></mat-form-field>
-        <mat-form-field><label for="email">Votre email</label><input type="text"></mat-form-field>
+        <div><label for="name">Nom(s) et prénom(s): </label><mat-form-field><input matInput type="text"></mat-form-field></div>
+        <div><label for="email">Votre email: </label><mat-form-field><input matInput type="text"></mat-form-field></div>
       </div>
       <div class="contenu">
-        <mat-form-field><label for="message">Votre message</label><textarea></textarea></mat-form-field>
+        <div>Votre message</div>
+        <mat-form-field><textarea matInput></textarea></mat-form-field>
       </div>
-      <div class="button"><button mat-button>Envoyer</button></div>
+      <div class="button"><button mat-raised-button color="primary">Envoyer</button></div>
     </form>
   </div>
 </div>

@@ -1,16 +1,20 @@
-<div>
+<div class="main-container">
   <app-patient-id></app-patient-id>
-  <div>
-    <form>
-      <button><mat-icon>add</mat-icon></button>
-      <app-autocomplete-input label="Examen" placeholder="Examen"></app-autocomplete-input>
-      <mat-form-field>
-        <mat-label>Consignes</mat-label>
-        <input type="text" placeholder="Consignes">
-      </mat-form-field>
+  <div class="form-container">
+    <form #examenForm="ngForm">
+      <div class="accordion">
+        <div class="expansion" *ngFor="let examen of examenGeneralForm; let i=index" [formGroup]="examen">
+          <button (click)="onAddExamenGroup()" mat-mini-fab defaultColor="white" color="white" disableRipple matRipple><mat-icon>add</mat-icon></button>
+
+          <app-autocomplete-input [width]="40" [min_width]="250" label="Examen" placeholder="Examen" (value)="onFillExamen($event, i)"></app-autocomplete-input>
+
+          <app-chips-input label="Consignes" placeholder="Consignes" [width]="40" [min_width]="250" (value)="onFillConsignes($event, i)"></app-chips-input>
+          <!-- <input type="text" formControlName="examen"> -->
+        </div>
+      </div>
     </form>
   </div>
-  <div>
-    <app-mini-footer></app-mini-footer>
+  <div class="footer">
+    <app-mini-footer (images)="getImages($event)" (submit)="onSubmit()" [disabled]="mainForm.invalid"></app-mini-footer>
   </div>
 </div>

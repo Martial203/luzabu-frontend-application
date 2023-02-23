@@ -1,10 +1,9 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { MatChipEditedEvent, MatChipInputEvent } from '@angular/material/chips';
+import { Subscription } from 'rxjs';
 
-export interface Item {
-  name: string;
-}
 
 @Component({
   selector: 'app-chips-input',
@@ -16,25 +15,35 @@ export class ChipsInputComponent {
   //Declaration for template texts
   @Input() label !: string;
   @Input() placeholder!: string;
+  @Input() width: number = 50;
+  @Input() min_width: number = 250;
+  @Input() height!: number;
 
   //Fonctionnal declarations
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
-  items: Item[] = [{name: 'Lemon'}, {name: 'Lime'}, {name: 'Apple'}];
+  items: string[] = [];
+  control: FormControl = new FormControl([''], [Validators.required]);
+  @Output() value : EventEmitter<string[]> = new EventEmitter<string[]>();
+  subscription!: Subscription;
+
+  ngOnInit(): void{
+    this.subscription = this.control.valueChanges.subscribe(val => this.value.emit(val));
+  }
 
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
 
     // Add our fruit
     if (value) {
-      this.items.push({name: value});
+      this.items.push(value);
     }
 
     // Clear the input value
     event.chipInput!.clear();
   }
 
-  remove(fruit: Item): void {
+  remove(fruit: string): void {
     const index = this.items.indexOf(fruit);
 
     if (index >= 0) {
@@ -42,7 +51,7 @@ export class ChipsInputComponent {
     }
   }
 
-  edit(fruit: Item, event: MatChipEditedEvent) {
+  edit(fruit: string, event: MatChipEditedEvent) {
     const value = event.value.trim();
 
     // Remove fruit if it no longer has a name
@@ -54,7 +63,11 @@ export class ChipsInputComponent {
     // Edit existing fruit
     const index = this.items.indexOf(fruit);
     if (index >= 0) {
-      this.items[index].name = value;
+      this.items[index] = value;
     }
+  }
+
+  ngOnDestroy(): void{
+    this.subscription.unsubscribe();
   }
 }

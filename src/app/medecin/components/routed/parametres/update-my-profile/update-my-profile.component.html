@@ -1,24 +1,52 @@
-<form>
-  <div>
-    <div class="profile">
-      <div>
-        <label for="ville">Ville</label><input type="text">
-        <mat-icon>draw </mat-icon>
-      </div>
-      <div>
-        <label for="telephone">Téléphone</label><input type="text">
-        <mat-icon>draw </mat-icon>
-      </div>
-      <div>
-        <label for="email">E-mail</label><input type="text">
-        <mat-icon>draw </mat-icon>
-      </div>
-      <div>
-        <label for="password">Mot de passe</label><input type="text">
-        <mat-icon>draw </mat-icon>
+<form [formGroup]="updateProfileForm">
+  <div class="form">
+    <div class="row1">
+      <table class="profile">
+        <tr>
+          <td><label for="ville">Ville: </label></td>
+          <td>
+            <mat-form-field appearance="outline">
+              <input matNativeControl type="text" formControlName="ville">
+              <mat-icon matSuffix>draw </mat-icon>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="telephone">Téléphone: </label></td>
+          <td>
+            <mat-form-field appearance="outline">
+              <input matInput type="text" formControlName="telephone">
+              <mat-icon matSuffix>draw</mat-icon>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="email">E-mail: </label></td>
+          <td>
+            <mat-form-field appearance="outline">
+              <input matInput type="text" formControlName="email">
+              <mat-icon matSuffix>draw</mat-icon>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="password">Mot de passe: </label></td>
+          <td>
+            <mat-form-field appearance="outline">
+              <input matInput type="password" formControlName="password">
+              <mat-icon matSuffix>draw</mat-icon>
+            </mat-form-field>
+        </td>
+        </tr>
+      </table>
+      <div class="avatar">
+        <figure>
+          <img src="" alt="">
+          <legend><label for="avatar"><button mat-button>Choisir une photo</button></label></legend>
+        </figure>
+        <input type="file" accept="image/.jpg, image/.png/, image/.jpeg" id="avatar">
       </div>
     </div>
-    <figure class="avatar"></figure>
   </div>
-  <div><button>Enrégistrer</button></div>
+  <div class="row2"><button matRipple (click)="onSubmit()">Enregistrer</button></div>
 </form>

@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import { Observable, Subscription } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
 @Component({
@@ -12,10 +12,13 @@ export class AutocompleteInputComponent {
   //Declaration for template texts
   @Input() label!: string;
   @Input() placeholder!: string;
-  
+  @Input() width: number = 30;
+  @Input() min_width: number = 0;
   //Functionnal declarations
-  myControl = new FormControl('');
-  @Input() options: string[] = ['One', 'Two', 'Three'];
+  @Output() value: EventEmitter<string> = new EventEmitter<string>();
+  myControl = new FormControl('', [Validators.required]);
+  control$!: Subscription;
+  @Input() optionsList: string[] = ['One', 'Two', 'Three'];
   filteredOptions!: Observable<string[]>;
 
   ngOnInit() {
@@ -23,11 +26,18 @@ export class AutocompleteInputComponent {
       startWith(''),
       map(value => this._filter(value || '')),
     );
+    this.control$ = this.myControl.valueChanges.subscribe(val => {
+      this.value.emit(val!)
+    });
   }
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
+    return this.optionsList.filter(option => option.toLowerCase().includes(filterValue));
+  }
+
+  ngOnDestroy(): void{
+    this.control$.unsubscribe();
   }
 }

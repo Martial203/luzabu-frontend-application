@@ -1,0 +1,12 @@
+.patient-id{
+  background-color: #eeeeee;
+  text-align: center;
+  label{
+    margin-right: 12px;
+  }
+  mat-form-field{
+    width: 50%;
+    min-width: 300px;
+    margin-top: 10px;
+  }
+}

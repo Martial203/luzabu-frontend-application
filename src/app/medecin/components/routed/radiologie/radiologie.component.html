@@ -1,18 +1,18 @@
-<div>
+<div class="main-container">
   <app-patient-id></app-patient-id>
-  <div>
-    <form>
-      <div>
+  <div class="form-container" id="form-container">
+    <form #radioForm="ngForm">
+      <div class="bloc1" *ngFor="let radiologie of radiologieForm; let i=index" [formGroup]="radiologie">
         <mat-form-field>
-          <mat-label>Type de radiologie</mat-label>
-          <input type="text">
+          <mat-label>Titre de l'examen radiologique</mat-label>
+          <input matInput type="text" placeholder="Titre de l'examen radiologique" formControlName="titre">
         </mat-form-field>
-        <app-chips-input label="Résultats" placeholder="Résultats"></app-chips-input>
+        <app-chips-input label="Résultats" placeholder="Résultats..." [width]="100" [min_width]="300" [height]="70" (value)="getResultats($event, i)"></app-chips-input>
       </div>
-    <button mat-mini-fab><mat-icon>add</mat-icon></button>
     </form>
+    <div class="add-button"><button mat-mini-fab (click)="onAddRadiologie()"><mat-icon>add</mat-icon></button></div>
   </div>
-  <div>
-    <app-mini-footer></app-mini-footer>
+  <div class="footer">
+    <app-mini-footer (images)="getImages($event)" (submit)="onSubmit()" [disabled]="mainForm.invalid"></app-mini-footer>
   </div>
 </div>

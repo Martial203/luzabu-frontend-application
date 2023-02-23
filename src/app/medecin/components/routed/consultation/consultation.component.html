@@ -1,31 +1,41 @@
-<form>
-  <div>
-    <h3>Examen clinique</h3>
-    <mat-form-field><mat-label>Identifiant patient</mat-label><input matInput placholder="Identifiant patient" type="text"></mat-form-field>
-    <mat-form-field><mat-label>Motif de consultation</mat-label><input matInput placholder="Motif de consultation" type="text"></mat-form-field>
-    <mat-form-field><mat-label>Age patient</mat-label><input matInput placholder="Age patient" type="text"></mat-form-field>
-    <mat-form-field><mat-label>Taille patient</mat-label><input matInput placholder="Taille patient" type="text"></mat-form-field>
-    <mat-form-field><mat-label>Température</mat-label><input matInput placholder="Température" type="text"></mat-form-field>
-    <mat-form-field><mat-label>Pression artérielle</mat-label><input matInput placholder="Pression artérielle" type="text"></mat-form-field>
-    <mat-form-field><mat-label>Poids du patient</mat-label><input matInput placholder="Poids du patient" type="text"></mat-form-field>
-    <mat-form-field><mat-label>Pouls du patient</mat-label><input matInput placholder="Pouls du patient" type="text"></mat-form-field>
-    <mat-form-field><mat-label>Spo2 du patient</mat-label><input matInput placholder="Spo2 du patient" type="text"></mat-form-field>
-  </div>
-  <div>
-    <h3>Evaluation des symptômes</h3>
-    <div>
-      <button mat-mini-fab><mat-icon>add</mat-icon></button><app-autocomplete-input label="Symptôme" placeholder="Symptôme"></app-autocomplete-input>
-      <mat-form-field>
-        <mat-label>Commentaire</mat-label>
-        <input matInput type="text" placeholder="Commentaire">
-      </mat-form-field>
+<form #consultationForm="ngForm">
+  <div class="row1">
+    <div class="bloc1" [formGroup]="examenCliniqueForm">
+      <h3>Examen clinique</h3>
+      <mat-form-field><mat-label>Identifiant patient</mat-label><input [value]="idPatient" matInput placholder="Identifiant patient" type="text" disabled></mat-form-field>
+      <mat-form-field><mat-label>Motif de consultation</mat-label><input matInput placholder="Motif de consultation" type="text" formControlName="motif_consultation"></mat-form-field>
+      <mat-form-field><mat-label>Age patient</mat-label><input matInput placholder="Age patient" type="text" formControlName="age"></mat-form-field>
+      <mat-form-field><mat-label>Taille patient</mat-label><input matInput placholder="Taille patient" type="text" formControlName="taille"></mat-form-field>
+      <mat-form-field><mat-label>Température</mat-label><input matInput placholder="Température" type="text" formControlName="temperature"></mat-form-field>
+      <mat-form-field><mat-label>Pression artérielle</mat-label><input matInput placholder="Pression artérielle" type="text" formControlName="pression_arterielle"></mat-form-field>
+      <mat-form-field><mat-label>Poids du patient</mat-label><input matInput placholder="Poids du patient" type="text" formControlName="poids"></mat-form-field>
+      <mat-form-field><mat-label>Pouls du patient</mat-label><input matInput placholder="Pouls du patient" type="text" formControlName="pouls"></mat-form-field>
+      <mat-form-field><mat-label>Spo2 du patient</mat-label><input matInput placholder="Spo2 du patient" type="text" formControlName="spo2"></mat-form-field>
     </div>
-    <div>
-      <button mat-mini-fab><mat-icon>add</mat-icon></button><app-autocomplete-input label="Diagnostique" placeholder="Diagnostique"></app-autocomplete-input>
-      <mat-form-field>
-        <mat-label>Remarque</mat-label>
-        <input matInput type="text" placeholder="Commentaire">
-      </mat-form-field>
+    <div class="bloc2">
+      <div class="symptoms">
+        <h3>Evaluation des symptômes</h3>
+        <div class="symptoms-list">
+          <div *ngFor="let symptom of symptomeForm; let i=index" [formGroup]="symptom">
+            <button mat-mini-fab (click)="onAddSymptom()"><mat-icon>add</mat-icon></button>
+            <app-autocomplete-input label="Symptôme" placeholder="Symptôme" [width]="40" [min_width]="225" (value)="getSymptom($event, i)"></app-autocomplete-input>
+            <mat-form-field>
+              <mat-label>Commentaire</mat-label>
+              <input matInput type="text" placeholder="Commentaire" formControlName="commentaire">
+            </mat-form-field>
+          </div>
+          <div *ngFor="let diagnostique of diagnostiqueForm; let i=index" [formGroup]="diagnostique">
+            <button mat-mini-fab (click)="onAddDiagnostique()"><mat-icon>add</mat-icon></button>
+            <app-autocomplete-input label="Diagnostique" placeholder="Diagnostique" [width]="40" [min_width]="225" (value)="getDiagnostique($event, i)"></app-autocomplete-input>
+            <mat-form-field>
+              <mat-label>Remarque</mat-label>
+              <input matInput type="text" placeholder="Commentaire" formControlName="remarque">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="image"><img src="" alt=""></div>
     </div>
   </div>
+  <app-mini-footer (images)="getImages($event)" (submit)="onSubmit()" [disabled]="mainForm.invalid"></app-mini-footer>
 </form>

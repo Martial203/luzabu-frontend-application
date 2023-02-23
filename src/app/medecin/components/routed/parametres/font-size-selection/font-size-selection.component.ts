@@ -9,14 +9,14 @@ export class FontSizeSelectionComponent {
 
   formatLabel(value: number): string{
     switch (value){
-      case 0:
-        return "Petite"
       case 1:
         return "Petite"
       case 2:
+        return "Moyenne"
+      case 3:
         return "Grande"
       default:
-        return ""
+        return "Moyenne"
     }
   }
 }

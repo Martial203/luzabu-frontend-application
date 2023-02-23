@@ -1,7 +1,7 @@
-<div>
-  <p></p>
-  <div>
-    <button mat-mini-fab><mat-icon>camera</mat-icon></button>
-    <button mat-button>Enregistrer</button>
-  </div>
+<div class="main-container">
+  <p class="text">&nbsp;&nbsp;&nbsp;&nbsp;</p>
+  <span class="buttons">
+    <button mat-icon-button class="camera" (click)="openDialog()"><mat-icon>camera</mat-icon></button>
+    <button mat-raised-button class="save" color="primary" (click)="onClick($event)" [disabled]="disabled">Enregistrer</button>
+  </span>
 </div>

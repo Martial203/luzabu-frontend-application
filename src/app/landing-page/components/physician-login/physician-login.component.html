@@ -1,0 +1,23 @@
+<div class="main-container">
+  <aside title="Connexion">
+    <app-landing-aside></app-landing-aside>
+  </aside>
+  <div class="form">
+    <form (ngSubmit)="onSubmitForm()" enctype="multipart/form-data" [formGroup]="loginForm">
+      <h1>Connexion</h1>
+      <mat-form-field>
+        <mat-label>Matricule</mat-label>
+        <input matInput type="text" placeholder="matricule" formControlName="matricule" id="matricule" required>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Mot de passe</mat-label>
+        <input matInput type="password" placeholder="Mot de passe" formControlName="password" id="password" required>
+      </mat-form-field>
+      <input type="file" accept="image/*" name="file" (change)="getFile($event)">
+      <p>Pas encore de compte ? <a routerLink="/new-physician">Inscrivez vous ici</a></p>
+      <div class="buttons">
+        <button mat-raised-button type="submit" [disabled]="loginForm.invalid">Se connecter</button>
+      </div>
+    </form>
+  </div>
+</div>

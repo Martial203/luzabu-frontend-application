@@ -1,4 +1,4 @@
 <div>
   <app-infos-traitement></app-infos-traitement>
-  <app-submit></app-submit>
+  <app-submit (images)="getImages($event)" (submit)="onClick($event)" [disabled]="disabled"></app-submit>
 </div>

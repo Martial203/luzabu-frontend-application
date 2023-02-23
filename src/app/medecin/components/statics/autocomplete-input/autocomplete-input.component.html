@@ -1,12 +1,13 @@
-<mat-form-field appearance="fill">
+<mat-form-field appearance="fill" [ngStyle]="{'width.%': width, 'min-width.px': min_width }">
   <mat-label>{{ label }}</mat-label>
-  <mat-icon matSuffix>down_arrow</mat-icon>
+  <mat-icon matSuffix>add</mat-icon>
   <input type="text"
          [placeholder]="placeholder"
          [attr.aria-label]="'Nouveau '+label"
          matInput
          [formControl]="myControl"
-         [matAutocomplete]="auto">
+         [matAutocomplete]="auto"
+         >
   <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
     <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
       {{option}}

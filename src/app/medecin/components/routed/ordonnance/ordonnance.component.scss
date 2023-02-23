@@ -1,0 +1,86 @@
+.main-container{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  app-patient-id{
+    flex: 1;
+  }
+  .form-container{
+    flex: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #959998;
+    border: solid 1px;
+    padding: 5px 20px 5px 20px;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    form{
+      border: solid #ffffff 1px;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 10px;
+      >div{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 100%;
+        margin-top: 5px;
+        .bloc1{
+          border: solid 1px;
+          flex: 1;
+          padding: 10px;
+          margin-right: 10px;
+          mat-form-field{
+            display: block;
+          }
+          mat-form-field:last-of-type{
+            height: 57px;
+          }
+        }
+        .bloc2{
+          flex: 1;
+          border: solid 1px;
+          padding: 10px;
+          padding-bottom: 0px;
+          margin-left: 10px;
+          margin-right: 5px;
+          align-self: stretch;
+          div{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            mat-form-field{
+              display: block;
+            }
+          }
+        }
+        .add-button{
+          width: 0px;
+          height: 0px;
+          overflow: visible;
+          position: relative;
+          right: 35px;
+          top: 100%;
+        }
+      }
+    }
+    .add-button{
+      height: 0px;
+      width: 100%;
+      overflow: visible;
+      text-align: right;
+      position: relative;
+      left: 10px;
+      bottom: 45px;
+    }
+  }
+  .footer{
+    flex: 1;
+  }
+}

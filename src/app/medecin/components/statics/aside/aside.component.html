@@ -1,16 +1,19 @@
 <div class="aside">
   <p><a routerLink="/medecin/home">Accueil</a></p>
-  <figure>
-    <img src="/assets/doctor.jpg" alt="Doctor's name">
-    <legend>Doctor's Name</legend>
-  </figure>
-  <div>
+  <div class="avatar">
+    <figure>
+      <img src="/assets/doctor.jpg" alt="Doctor's name">
+      <legend>Doctor's Name</legend>
+   </figure>
+  </div>
+
+  <div class="side-nav">
     <mat-nav-list>
-      <a routerLink="/medecin/profil" mat-list-item><li><mat-icon >play</mat-icon>Profil</li></a>
-      <a routerLink="/medecin/historique" mat-list-item><li><mat-icon >play</mat-icon>Historique</li></a>
-      <a routerLink="/medecin/parametres" mat-list-item><li><mat-icon >play</mat-icon>Paramètres</li></a>
-      <a routerLink="/medecin/aide" mat-list-item><li><mat-icon >play</mat-icon>Aide</li></a>
-      <a routerLink="/medecin/a-propos" mat-list-item><li><mat-icon >play</mat-icon>A propos</li></a>
+      <a routerLink="/medecin/profil" routerLinkActive="active" mat-list-item><li><mat-icon>add</mat-icon>Profil</li></a>
+      <a routerLink="/medecin/historique" routerLinkActive="active" mat-list-item><li><mat-icon >add</mat-icon>Historique</li></a>
+      <a routerLink="/medecin/parametres" routerLinkActive="active" mat-list-item><li><mat-icon >add</mat-icon>Paramètres</li></a>
+      <a routerLink="/medecin/aide" routerLinkActive="active" mat-list-item><li><mat-icon >add</mat-icon>Aide</li></a>
+      <a routerLink="/medecin/a-propos" routerLinkActive="active" mat-list-item><li><mat-icon >add</mat-icon>A propos</li></a>
     </mat-nav-list>
   </div>
 </div>

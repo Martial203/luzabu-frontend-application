@@ -1,13 +1,13 @@
-<mat-form-field class="example-chip-list" appearance="fill">
+<mat-form-field appearance="fill" [ngStyle]="{'width.%': width, 'min-width.px': min_width, 'height.%': height}">
   <mat-label>{{ label }}</mat-label>
-  <mat-chip-grid #chipGrid [attr.aria-label]="'Enter '+label"  class="mat-mdc-chip-set-stacked">
+  <mat-chip-grid #chipGrid [attr.aria-label]="'Enter '+label" class="mat-mdc-chip-set-stacked" [formControl]="control">
     <mat-chip-row *ngFor="let item of items"
                   (removed)="remove(item)"
                   [editable]="true"
                   (edited)="edit(item, $event)"
-                  [aria-description]="'press enter to edit ' + item.name">
-      {{item.name}}
-      <button matChipRemove [attr.aria-label]="'remove ' + item.name">
+                  [aria-description]="'press enter to edit ' + item">
+      {{item}}
+      <button matChipRemove [attr.aria-label]="'remove ' + item">
         <mat-icon>cancel</mat-icon>
       </button>
     </mat-chip-row>

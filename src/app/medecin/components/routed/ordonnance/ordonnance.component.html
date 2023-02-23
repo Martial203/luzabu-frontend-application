@@ -1,36 +1,40 @@
-<div class="mein-container">
+<div class="main-container">
   <app-patient-id></app-patient-id>
   <div class="form-container">
-    <form>
-      <div class="drug-caracteristics">
-        <mat-form-field>
-          <mat-label>Nom du médicament</mat-label>
-          <input matInput type="text" placeholder="Nom du médicament">
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Famille du médicament</mat-label>
-          <input matInput type="text" placeholder="Famille du médicament">
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Forme du médicament</mat-label>
-          <input matInput type="text" placeholder="Forme du médicament">
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Dosage du médicament</mat-label>
-          <input matInput type="text" placeholder="Dosage du médicament">
-        </mat-form-field>
+    <form #ordonnanceForm="ngForm">
+      <div *ngFor="let medicament of medicamentForm; let i=index" [formGroup]="medicament">
+        <div class="bloc1">
+          <mat-form-field>
+            <mat-label>Nom du médicament</mat-label>
+            <input matInput type="text" placeholder="Nom du médicament" formControlName="nom">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Famille du médicament</mat-label>
+            <input matInput type="text" placeholder="Famille du médicament" formControlName="famille">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Forme du médicament</mat-label>
+            <input matInput type="text" placeholder="Forme du médicament" formControlName="forme">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Dosage du médicament</mat-label>
+            <input matInput type="text" placeholder="Dosage du médicament" formControlName="dosage">
+          </mat-form-field>
+        </div>
+        <div class="bloc2">
+          <div>
+            <mat-form-field>
+              <mat-label>Posologie usuelle</mat-label>
+              <textarea matInput placeholder="Posologie usuelle" formControlName="posologie"></textarea>
+            </mat-form-field>
+            <app-chips-input label="Observations" placeholder="Nouvelle observation..." [width]="100" [min_width]="300" (value)="getObservations($event, i)"></app-chips-input>
+          </div>
+        </div>
       </div>
-      <div class="traitement">
-        <mat-form-field>
-          <mat-label>Posologie usuelle</mat-label>  
-          <textarea matInput placeholder="Posologie usuelle"></textarea>
-        </mat-form-field>
-        <app-chips-input label="Observations" placeholder="Nouvelle observation..."></app-chips-input>
-      </div>
-      <div class="add-icon"><mat-icon>add</mat-icon></div>
     </form>
+    <div class="add-button"><button mat-mini-fab (click)="onAddMedicament()"><mat-icon>add</mat-icon></button></div>
   </div>
-  <div>
-    <app-mini-footer></app-mini-footer>
+  <div class="footer">
+    <app-mini-footer (images)="getImages($event)" (submit)="onSubmit()" [disabled]="mainForm.invalid"></app-mini-footer>
   </div>
 </div>

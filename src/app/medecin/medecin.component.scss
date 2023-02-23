@@ -4,12 +4,23 @@
   height: 100%;
   aside{
     flex: 1;
+    height: 100%;
     min-width: 200px;
     max-width: 240px;
-    padding-top: 15px;
     overflow-y: auto;
   }
   main{
     flex: 3;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    header{
+      flex: 1;
+    }
+    div{
+      flex: 25;
+      overflow: auto;
+      padding: 10px 15px;
+    }
   }
 }

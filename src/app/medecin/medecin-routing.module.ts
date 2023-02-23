@@ -13,11 +13,13 @@ import { OrdonnanceComponent } from "./components/routed/ordonnance/ordonnance.c
 import { ProfilComponent } from "./components/routed/profil/profil.component";
 import { RadiologieComponent } from "./components/routed/radiologie/radiologie.component";
 import { TestLaboratoireComponent } from "./components/routed/test-laboratoire/test-laboratoire.component";
+import { ConsultationComponent } from "./components/routed/consultation/consultation.component";
 
 
 const routes : Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'consultation', component: ConsultationComponent },
   { path: 'examen', component: ExamenComponent },
   { path: 'ordonnance', component: OrdonnanceComponent },
   { path: 'test-laboratoire', component: TestLaboratoireComponent },
@@ -25,8 +27,8 @@ const routes : Routes = [
   { path: 'mes-suivis', component: MesSuivisComponent },
   { path: 'profil', component: ProfilComponent },
   { path: 'historique', component: HistoriqueComponent },
-  { path: 'archives', component: ArchivesComponent },
-  { path: 'statistiques', component: StatistiquesComponent },
+  // { path: 'archives', component: ArchivesComponent },
+  // { path: 'statistiques', component: StatistiquesComponent },
   { path: 'parametres', component: ParametresComponent },
   { path: 'aide', component: AideComponent },
   { path: 'a-propos', component: AProposComponent },

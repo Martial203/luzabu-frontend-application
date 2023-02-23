@@ -1,0 +1,13 @@
+div{
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 3px;
+  app-infos-traitement{
+    flex: 1;
+  }
+  app-submit{
+    flex: 1;
+    margin-left: 15px;
+    align-self: flex-end;
+  }
+}

@@ -1,0 +1,75 @@
+.form{
+  border: solid 2px;
+  background-color: rgba(0, 0, 255, 0.521);
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  .row1{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 30px;
+    .profile{
+      margin-right: 10px;
+      flex: 2;
+      tr{
+        td{
+          mat-icon{
+            vertical-align: middle;
+          }
+        }
+        td:first-of-type{
+          width: 100px;
+        }
+        td:last-of-type{
+          overflow: hidden;
+          mat-form-field{
+            height: 56px;
+            width: 90%;
+          }
+        }
+      }
+    }
+    .avatar{
+      flex: 1;
+      margin-left: 10px;
+      text-align: center;
+      figure{
+        height: 200px;
+        width: 210px;
+        img{
+          height: 150px;
+          width: 150px;
+          border-radius: 50%;
+          margin-top: 2px;
+          background-color: rgba(0, 0, 0, 0.623);;
+        }
+        legend{
+          margin-top: 5px;
+        }
+      }
+      #avatar{
+        display: none;
+      }
+    }
+  }
+}
+.row2{
+  text-align: right;
+  margin-top: 20px;
+  padding-right: 10px;
+  button{
+    transition: background-color 200ms;
+    padding: 5px 20px;
+    border-radius: 15px;
+    border: none;
+    background-color: rgba(0, 0, 255, 0.521);
+    color: white;
+    font-weight: bold;
+    &:hover{
+      transition: background-color 200ms;
+      background-color: rgba(0, 0, 255, 0.821);
+    }
+  }
+}
