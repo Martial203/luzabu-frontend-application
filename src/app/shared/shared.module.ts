@@ -21,6 +21,9 @@ import { MatRippleModule } from '@angular/material/core';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatMenuModule } from '@angular/material/menu';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -50,6 +53,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatNativeDateModule,
     MatSelectModule,
     MatDialogModule,
+    MatProgressSpinnerModule,
+    MatMenuModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule
   ]

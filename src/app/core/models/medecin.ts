@@ -1,19 +1,18 @@
 export class Medecin {
-  id!: string;
   matricule!: string;
-  nom!: string;
-  prenom!: string;
-  sexe!: "masculin"|"feminin";
-  nationalite!: string;
-  date_naissance!: Date;
-  lieu_naissance!: string;
-  telephone!: string;
+  firstName!: string;
+  lastName!: string;
+  sex!: "masculin"|"feminin";
+  nationality!: string;
+  birthdate!: Date;
+  birthPlace!: string;
+  phoneNumber!: string;
   email!: string;
-  ville!: string;
-  qualite!: "généraliste"|"spécialiste";
-  hopital!: string;
-  certificat!: [string];
+  city!: string;
+  qualification!: "généraliste"|"spécialiste";
+  hopitalName!: string;
+  certificate!: [string];
   password!: string;
   avatar?: string;
-  registration_date!: Date;
+  registrationDate!: Date;
 }

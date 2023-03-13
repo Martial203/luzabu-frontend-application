@@ -1,11 +1,14 @@
 <div class="main-container">
   <app-patient-id [input]="true"></app-patient-id>
-    <div class="main-content">
-    <div>
-      gnazgiuz
+  <div class="main-content">
+    <div *ngIf="loading" class="spinner">
+      <mat-spinner></mat-spinner>
+    </div>
+    <div class="history">
+      
     </div>
   </div>
   <div class="button-div">
-    <button mat-fab extended color="primary">Démander accès</button>
+    <button mat-fab extended color="primary" [disabled]="disabled" (click)="getPatientHistory()">Démander accès</button>
   </div>
 </div>

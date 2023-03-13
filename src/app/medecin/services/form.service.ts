@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { WebcamImage } from 'ngx-webcam';
 import { MedecinService } from './medecin.service';
 import { PatientService } from './patient.service';

@@ -10,10 +10,19 @@
   <div class="side-nav">
     <mat-nav-list>
       <a routerLink="/medecin/profil" routerLinkActive="active" mat-list-item><li><mat-icon>add</mat-icon>Profil</li></a>
-      <a routerLink="/medecin/historique" routerLinkActive="active" mat-list-item><li><mat-icon >add</mat-icon>Historique</li></a>
+      <a [matMenuTriggerFor]="menu" routerLinkActive="active" mat-list-item><li><mat-icon >add</mat-icon>Historique</li></a>
       <a routerLink="/medecin/parametres" routerLinkActive="active" mat-list-item><li><mat-icon >add</mat-icon>Paramètres</li></a>
       <a routerLink="/medecin/aide" routerLinkActive="active" mat-list-item><li><mat-icon >add</mat-icon>Aide</li></a>
       <a routerLink="/medecin/a-propos" routerLinkActive="active" mat-list-item><li><mat-icon >add</mat-icon>A propos</li></a>
+      <a (click)="onSignOut()" mat-list-item><li><mat-icon >add</mat-icon>A propos</li></a>
     </mat-nav-list>
   </div>
 </div>
+
+<mat-menu #menu="matMenu">
+  <a mat-menu-item routerLink="/medecin/historique/examensGeneraux">Mes examens</a>
+  <a mat-menu-item routerLink="/medecin/historique/consultations">Mes consultations</a>
+  <a mat-menu-item routerLink="/medecin/historique/ordonnances">Mes ordonnances</a>
+  <a mat-menu-item routerLink="/medecin/historique/laboratoire">Mes résultats labo</a>
+  <a mat-menu-item routerLink="/medecin/historique/imagerie">Mes résultats imagerie</a>
+</mat-menu>

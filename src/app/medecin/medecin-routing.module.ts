@@ -26,7 +26,7 @@ const routes : Routes = [
   { path: 'radiologie', component: RadiologieComponent },
   { path: 'mes-suivis', component: MesSuivisComponent },
   { path: 'profil', component: ProfilComponent },
-  { path: 'historique', component: HistoriqueComponent },
+  { path: 'historique/:categorie', component: HistoriqueComponent },
   // { path: 'archives', component: ArchivesComponent },
   // { path: 'statistiques', component: StatistiquesComponent },
   { path: 'parametres', component: ParametresComponent },

@@ -19,7 +19,7 @@ export class TestLaboratoireComponent {
 
   @ViewChild('laboForm') form!: NgForm;
 
-  constructor(private formBuilder: FormBuilder, private formService: FormService) {}
+  constructor(private formBuilder: FormBuilder, private formService: FormService, private patientService: PatientService) {}
 
   ngOnInit(): void{
     this.onAddTest();
@@ -64,6 +64,7 @@ export class TestLaboratoireComponent {
       this.images.forEach(image => examenLaboratoire.images.push(image.imageAsDataUrl));
 
       //Api post
+      this.patientService.newMedication(examenLaboratoire);
     }
   }
 

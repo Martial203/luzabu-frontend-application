@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { WebcamImage } from 'ngx-webcam';
 import { Ordonnance } from 'src/app/medecin/models/ordonnance';
 import { FormService } from 'src/app/medecin/services/form.service';
+import { PatientService } from 'src/app/medecin/services/patient.service';
 
 @Component({
   selector: 'app-ordonnance',
@@ -18,7 +19,7 @@ export class OrdonnanceComponent {
 
   @ViewChild('ordonnanceForm') form!: NgForm;
 
-  constructor(private formBuilder: FormBuilder, private formService: FormService) {}
+  constructor(private formBuilder: FormBuilder, private formService: FormService, private patientService: PatientService) {}
 
   ngOnInit(): void{
     this.onAddMedicament();
@@ -64,6 +65,7 @@ export class OrdonnanceComponent {
       this.images.forEach(image => ordonnance.images.push(image.imageAsDataUrl));
 
       // Api call for submission
+      this.patientService.newMedication(ordonnance);
     }
   }
 

@@ -13,7 +13,6 @@
         <mat-label>Mot de passe</mat-label>
         <input matInput type="password" placeholder="Mot de passe" formControlName="password" id="password" required>
       </mat-form-field>
-      <input type="file" accept="image/*" name="file" (change)="getFile($event)">
       <p>Pas encore de compte ? <a routerLink="/new-physician">Inscrivez vous ici</a></p>
       <div class="buttons">
         <button mat-raised-button type="submit" [disabled]="loginForm.invalid">Se connecter</button>

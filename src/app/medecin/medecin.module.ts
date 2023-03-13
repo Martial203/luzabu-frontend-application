@@ -35,7 +35,8 @@ import { CameraComponent } from './components/statics/camera/camera.component';
 import { QrCodeScannerComponent } from './components/statics/qr-code-scanner/qr-code-scanner.component';
 import { SafeSourcePipe } from './pipes/safe-source.pipe';
 import { NgxScannerQrcodeModule } from 'ngx-scanner-qrcode';
-import { HttpClientModule } from '@angular/common/http';
+import { ConsultationsListComponent } from './components/routed/historique/consultations-list/consultations-list.component';
+import { MedicationsListComponent } from './components/routed/historique/medications-list/medications-list.component';
 
 
 
@@ -71,13 +72,14 @@ import { HttpClientModule } from '@angular/common/http';
     FontSizeSelectionComponent,
     CameraComponent,
     QrCodeScannerComponent,
-    SafeSourcePipe
+    SafeSourcePipe,
+    ConsultationsListComponent,
+    MedicationsListComponent
   ],
   imports: [
     CommonModule,
     WebcamModule,
     NgxScannerQrcodeModule,
-    HttpClientModule,
     SharedModule,
     MedecinRoutingModule
   ],

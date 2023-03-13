@@ -2,12 +2,12 @@
   <aside title="Inscription">
     <app-landing-aside></app-landing-aside>
   </aside>
-  <form [formGroup]="newPhysicianForm" #form="ngForm">
+  <form [formGroup]="newPhysicianForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
     <div class="all_informations">
       <h2>Création compte médecin</h2>
       <div>
         <div class="qualite">
-          <mat-radio-group labelPosition="after" color="primary" formControlName="qualite">
+          <mat-radio-group labelPosition="after" color="primary" formControlName="qualification">
             <mat-radio-button value="Spécialiste">Spécialiste</mat-radio-button>
             <mat-radio-button value="Généraliste">Généraliste</mat-radio-button>
           </mat-radio-group>
@@ -18,24 +18,24 @@
         <div class="informations">
           <mat-form-field>
             <mat-label>Nom</mat-label>
-            <input matInput type="text" placeholder="Nom" formControlName="nom">
+            <input matInput type="text" placeholder="Nom" formControlName="lastName">
             <!-- <mat-error>{{ getControlError(newPhysicianForm.nom) }}</mat-error> -->
           </mat-form-field>
           <mat-form-field>
             <mat-label>Prénom</mat-label>
-            <input matInput type="text" placeholder="Prénom" formControlName="prenom">
+            <input matInput type="text" placeholder="Prénom" formControlName="firstName">
             <!-- <mat-error>{{ getControlError(newPhysicianForm.prenom) }}</mat-error> -->
           </mat-form-field>
           <div>
             <label>Sexe: </label>
-            <mat-radio-group labelPosition="after" color="primary" formControlName="sexe">
+            <mat-radio-group labelPosition="after" color="primary" formControlName="sex">
               <mat-radio-button value="Masculin">Masculin</mat-radio-button>
               <mat-radio-button value="Feminin">Féminin</mat-radio-button>
             </mat-radio-group>
           </div>
           <mat-form-field>
             <mat-label>Nationalité</mat-label>
-            <mat-select placeholder="Nationalité" formControlName="nationalite">
+            <mat-select placeholder="Nationalité" formControlName="nationality">
                 <mat-optgroup label="-----------------------------------------------------------------------------">
                   <mat-option value="Cameroun">Cameroun</mat-option>
                   <mat-option value="Congo">Congo</mat-option>
@@ -49,20 +49,20 @@
           <div>
             <mat-form-field appearance="fill">
               <mat-label>Date de naissance (MM/DD/YYYY)</mat-label>
-              <input matInput [matDatepicker]="picker" formControlName="date_naissance">
+              <input matInput [matDatepicker]="picker" formControlName="birthdate">
               <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
               <!-- <mat-error>{{ getControlError(newPhysicianForm.date_naissance) }}</mat-error> -->
             </mat-form-field>
             <mat-form-field>
               <mat-label>Lieu de naissance</mat-label>
-              <input matInput type="text" placeholder="Lieu de naissance" formControlName="lieu_naissance">
+              <input matInput type="text" placeholder="Lieu de naissance" formControlName="birthPlace">
               <!-- <mat-error>{{ getControlError(newPhysicianForm.lieu_naissance) }}</mat-error> -->
             </mat-form-field>
           </div>
           <mat-form-field>
             <mat-label>Téléphone</mat-label>
-            <input matInput type="text" placeholder="Téléphone" formControlName="telephone">
+            <input matInput type="text" placeholder="Téléphone" formControlName="phoneNumber">
             <!-- <mat-error>{{ getControlError(newPhysicianForm.telephone) }}</mat-error> -->
           </mat-form-field>
           <mat-form-field>
@@ -72,18 +72,18 @@
           </mat-form-field>
           <mat-form-field>
             <mat-label>Ville</mat-label>
-            <input matInput type="text" placeholder="Ville" formControlName="ville">
+            <input matInput type="text" placeholder="Ville" formControlName="city">
             <!-- <mat-error>{{ getControlError(newPhysicianForm.ville) }}</mat-error> -->
           </mat-form-field>
           <mat-form-field>
             <mat-label>Hôpital d'exercice</mat-label>
-            <input matInput type="text" placeholder="Hôpital d'exercice" formControlName="hopital">
+            <input matInput type="text" placeholder="Hôpital d'exercice" formControlName="hopitalName">
             <!-- <mat-error>{{ getControlError(newPhysicianForm.hopital) }}</mat-error> -->
           </mat-form-field>
           <mat-form-field class="certificate">
             <mat-label>Certificat d'études</mat-label>
             <mat-icon matSuffix><label for="file">attachment</label></mat-icon>
-            <input type="file" id="file" accept=".pdf" formControlName="certificat">
+            <input type="file" id="file" accept=".pdf" (change)="onGetImage($event)">
             <input matInput type="text" placeholder="Certificat d'études" disabled>
             <!-- <mat-error>{{ getControlError(newPhysicianForm.certificat) }}</mat-error> -->
           </mat-form-field>
@@ -105,6 +105,6 @@
     <p class="validation">
       <mat-checkbox labelPosition="after" color="primary" formControlName="conditions">Accepter les <a href="/assets/Conditions_utilisation.pdf" target="_blank">conditions d'utilisations</a></mat-checkbox>
     </p>
-    <div class="submit"><button color="primary" mat-raised-button>Enregistrer</button></div>
+    <div class="submit"><button color="primary" mat-raised-button [disabled]="newPhysicianForm.invalid">Enregistrer</button></div>
   </form>
 </div>

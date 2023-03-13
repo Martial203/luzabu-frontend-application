@@ -16,5 +16,9 @@ export class AuthMedecinGuard implements CanActivateChild {
     
     return (this.medecinAuthService.getSessionInfos()) ? true : false;
   }
+
+  getSessionInfos (): string|null{
+    return sessionStorage.getItem('Token');
+  }
   
 }

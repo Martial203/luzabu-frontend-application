@@ -19,12 +19,12 @@ export class RadiologieComponent {
 
   @ViewChild('radioForm') form!: NgForm;
 
-  constructor(private formBuilder: FormBuilder, private formService: FormService) {}
+  constructor(private formBuilder: FormBuilder, private formService: FormService, private patientService: PatientService) {}
 
   ngOnInit(): void{
     this.onAddRadiologie();
   }
-    
+
   updateMain(): void{
     this.mainForm = this.formBuilder.group({
       ...this.radiologieForm
@@ -61,7 +61,8 @@ export class RadiologieComponent {
       this.radiologieForm.forEach(exam => radiologie.examens.push(exam.value))
       this.images.forEach(image => radiologie.images.push(image.imageAsDataUrl));
 
-        //API post
+      //API post
+      this.patientService.newMedication(radiologie);
     }
   }
 

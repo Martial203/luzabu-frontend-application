@@ -1,11 +1,14 @@
 <div class="main-container">
-  <app-patient-id [input]="true"></app-patient-id>
+  <app-patient-id [input]="true" (cardId)="getCardId($event)"></app-patient-id>
   <div class="main-content">
-    <div>
-      gnazgiuz
+    <div *ngIf="loading" class="spinner">
+      <mat-spinner></mat-spinner>
+    </div>
+    <div class="profile">
+
     </div>
   </div>
   <div class="button-div">
-    <button mat-fab extended color="primary">Voir profil</button>
+    <button mat-fab extended color="primary" [disabled]="disabled" (click)="getPatientProfile()">Voir profil</button>
   </div>
 </div>

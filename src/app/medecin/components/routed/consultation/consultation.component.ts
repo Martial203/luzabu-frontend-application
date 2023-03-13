@@ -1,7 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { WebcamImage } from 'ngx-webcam';
+import { take } from 'rxjs/operators';
 import { Consultation } from 'src/app/medecin/models/consultation';
+import { Patient } from 'src/app/medecin/models/patient';
 import { FormService } from 'src/app/medecin/services/form.service';
 import { PatientService } from 'src/app/medecin/services/patient.service';
 
@@ -116,6 +118,7 @@ export class ConsultationComponent {
       this.images.forEach(image => consultation.images.push(image.imageAsDataUrl));
 
       //API post
+      this.patientService.newMedication(consultation);
     }else{
       console.log('non submitted');
     }
@@ -125,4 +128,5 @@ export class ConsultationComponent {
     this.images = images;
     images.forEach(image => this.imagesFiles.push(this.formService.toFile(image, "name", "image/jpg")));
   }
+
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MedecinService } from 'src/app/medecin/services/medecin.service';
 
 @Component({
   selector: 'app-aside',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AsideComponent {
 
+  constructor(private medecinService: MedecinService) {}
+
+  onSignOut(): void{
+    this.medecinService.signOut();
+  }
 }

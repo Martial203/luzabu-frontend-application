@@ -8,19 +8,20 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
+import { MedecinService } from '../services/medecin.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private authService: AuthService) {}
+  constructor(private medecinService: MedecinService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     
-    const sessionInfos = this.authService.getSessionInfos();
+    const token = this.medecinService.getToken();
     
-    if(sessionInfos){
+    if(token){
       const headers = new HttpHeaders()
-      .append('Authorization', 'Bearer ${sessionInfos.token}');
+      .append('Authorization', 'Bearer ${token}');
       const newRequest = request.clone({headers});
       return next.handle(newRequest);
     }else{

@@ -11,30 +11,24 @@ import { AuthMedecinService } from '../../services/auth-medecin.service';
 export class PhysicianLoginComponent {
 
   loginForm!: FormGroup;
-  
+
   constructor(private medecinAuthService: AuthMedecinService, private router: Router, private formBuilder: FormBuilder) {}
 
   ngOnInit(): void{
     this.loginForm = this.formBuilder.group({
       matricule: [null, [Validators.required]],
-      password: [null, [Validators.required]],
-      file: [null]
+      password: [null, [Validators.required]]
     });
   }
 
   onSubmitForm(): void{
     console.log(this.loginForm.value)
     if(this.loginForm.valid){
-      // this.medecinAuthService.login(this.loginForm.value.matricule, this.loginForm.value.password).subscribe({
-      //   next: val => {
-      //     if(val==='success'){
-      //       this.router.navigateByUrl('/medecin');
-      //     }
-      //   },
-      //   error: err => console.log(err),
-      //   complete: () => console.log('complete')
-      // });
-      // this.router.navigateByUrl('/medecin');
+      this.medecinAuthService.signIn(this.loginForm.value).subscribe({
+        next: (val) => console.log(val),
+        error: (err) => console.log(err),
+        complete: () => this.router.navigateByUrl('/medecin')
+      })
     }
   }
 

@@ -19,7 +19,7 @@ export class ExamenComponent {
 
   @ViewChild('examenForm') form!: NgForm;
 
-  constructor(private formBuilder: FormBuilder, private formService: FormService) {}
+  constructor(private formBuilder: FormBuilder, private formService: FormService, private patientService: PatientService) {}
 
   ngOnInit(): void {
     this.initFormControls();
@@ -70,6 +70,7 @@ export class ExamenComponent {
       this.images.forEach(image => examen.images.push(image.imageAsDataUrl));
 
       //Api post
+      this.patientService.newMedication(examen);
     }
   }
 
