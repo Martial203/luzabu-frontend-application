@@ -37,6 +37,7 @@ export class QrCodeScannerComponent {
     console.log(e);
     this.scan.emit(e[0].value);
     this.dialogRef.close(e[0].value);
+    this.config.deviceActive = undefined;
   }
 
   public handle(action: any, fn: string): void {

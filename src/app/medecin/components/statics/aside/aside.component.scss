@@ -1,8 +1,10 @@
+@import "../../../../../styles.scss";
+
 .aside{
   height: 100%;
   display: flex;
   flex-direction: column;
-  background-color: rgba(0, 0, 255, 0.218);
+  background-color: $blue;
   p{
     flex: 1;
     text-align: center;
@@ -12,6 +14,7 @@
     a{
       text-decoration: none;
       font-size: 20px;
+      color: $asideLink;
     }
   }
   .avatar{
@@ -28,7 +31,7 @@
       margin-right: auto;
       text-align: center;
       margin-top: 40px;
-      background-color: rgba(255, 255, 255, 0.441);
+      background-color: $avatarBackground;
       img{
         width: 90px;
         height: 90px;
@@ -46,13 +49,16 @@
   .side-nav{
     flex: 20;
     mat-nav-list{
-      mat-icon{
-        vertical-align: middle;
-        margin-right: 4px;
+      a{
+        color: $asideLink;
+        mat-icon{
+          vertical-align: middle;
+          margin-right: 4px;
+        }
+      }
+      .active-link{
+        color: $activeLink;
       }
     }
   }
-}
-.active{
-  color: blue;
 }

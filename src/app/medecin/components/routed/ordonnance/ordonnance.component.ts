@@ -21,13 +21,16 @@ export class OrdonnanceComponent {
 
   constructor(private formBuilder: FormBuilder, private formService: FormService, private patientService: PatientService) {}
 
+  readonly idPatient: string = this.patientService.getPatientId();
+
   ngOnInit(): void{
     this.onAddMedicament();
   }
   
   updateMain(): void{
     this.mainForm = this.formBuilder.group({
-      ...this.medicamentForm
+      ...this.medicamentForm,
+      idPatient: [(this.idPatient!=="") ? this.idPatient : null, [Validators.required]]
     });
   }
 

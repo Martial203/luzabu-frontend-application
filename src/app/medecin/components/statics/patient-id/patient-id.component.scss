@@ -1,5 +1,7 @@
+@import "../../../../../styles.scss";
+
 .patient-id{
-  background-color: #eeeeee;
+  background-color: $patientIdBackground;
   text-align: center;
   label{
     margin-right: 12px;

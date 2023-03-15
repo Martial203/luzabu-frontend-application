@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LandingPageModule } from './landing-page/landing-page.module';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
+import { httpInterceptorProviders } from './core/interceptors';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { SharedModule } from './shared/shared.module';
     SharedModule,
     LandingPageModule
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

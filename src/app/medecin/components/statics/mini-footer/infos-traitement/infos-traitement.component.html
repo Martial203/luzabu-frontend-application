@@ -1,5 +1,5 @@
 <div>
-  <p>Nom du médecin</p>
-  <p>Hôpital de service</p>
-  <p>Date/Heure</p>
+  <p>{{(medecin) ? medecin.prenom+' '+medecin.nom : 'Nom du médecin'}}</p>
+  <p>{{(medecin) ? medecin.hopital : 'Hôpital de service'}}</p>
+  <p>{{datetime | date:'medium'}}</p>
 </div>

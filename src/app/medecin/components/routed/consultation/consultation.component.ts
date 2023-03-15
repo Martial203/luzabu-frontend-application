@@ -36,8 +36,10 @@ export class ConsultationComponent {
     this.mainForm = this.formBuilder.group({
       examenClinique: this.examenCliniqueForm,
       ...this.symptomeForm,
-      ...this.diagnostiqueForm
+      ...this.diagnostiqueForm,
+      idPatient: [(this.idPatient!=="") ? this.idPatient : null, [Validators.required]]
     });
+    console.log(this.idPatient);
   }
 
   initFormControls(): void{

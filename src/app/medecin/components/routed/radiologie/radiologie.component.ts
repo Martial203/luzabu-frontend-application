@@ -21,13 +21,16 @@ export class RadiologieComponent {
 
   constructor(private formBuilder: FormBuilder, private formService: FormService, private patientService: PatientService) {}
 
+  readonly idPatient: string = this.patientService.getPatientId();
+
   ngOnInit(): void{
     this.onAddRadiologie();
   }
 
   updateMain(): void{
     this.mainForm = this.formBuilder.group({
-      ...this.radiologieForm
+      ...this.radiologieForm,
+      idPatient: [(this.idPatient!=="") ? this.idPatient : null, [Validators.required]]
     });
   }
 
@@ -51,6 +54,7 @@ export class RadiologieComponent {
   }
 
   onSubmit(): void{
+    console.log("submit")
     if(this.mainForm.valid){
       const radiologie: Radiologie = this.formService.addHeaders({
         id: "1",
@@ -62,7 +66,7 @@ export class RadiologieComponent {
       this.images.forEach(image => radiologie.images.push(image.imageAsDataUrl));
 
       //API post
-      this.patientService.newMedication(radiologie);
+      this.patientService.newMedication(radiologie, 'radiologies');
     }
   }
 

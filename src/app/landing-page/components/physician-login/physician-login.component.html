@@ -7,10 +7,12 @@
       <h1>Connexion</h1>
       <mat-form-field>
         <mat-label>Matricule</mat-label>
+        <mat-icon matSuffix>account_circle</mat-icon>
         <input matInput type="text" placeholder="matricule" formControlName="matricule" id="matricule" required>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Mot de passe</mat-label>
+        <mat-icon matSuffix>lock</mat-icon>
         <input matInput type="password" placeholder="Mot de passe" formControlName="password" id="password" required>
       </mat-form-field>
       <p>Pas encore de compte ? <a routerLink="/new-physician">Inscrivez vous ici</a></p>

@@ -28,4 +28,14 @@ export class MedecinService {
   getToken(): string|null{
     return sessionStorage.getItem('Token');
   }
+
+  updateMedecin(): void{
+
+  }
+
+  getMedecin(): {matricule: string, nom: string, prenom: string, hopital: string} | null {
+    const medecin = sessionStorage.getItem('physician');
+    const medecinObject = (medecin) ? JSON.parse(medecin) : null;
+    return (medecinObject) ? {matricule: medecinObject.matricule, nom: medecinObject.lastName, prenom: medecinObject.firstName, hopital: medecinObject.hopitalName} : null;
+  }
 }

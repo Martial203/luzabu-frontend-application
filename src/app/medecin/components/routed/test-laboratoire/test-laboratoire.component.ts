@@ -21,13 +21,16 @@ export class TestLaboratoireComponent {
 
   constructor(private formBuilder: FormBuilder, private formService: FormService, private patientService: PatientService) {}
 
+  readonly idPatient: string = this.patientService.getPatientId();
+
   ngOnInit(): void{
     this.onAddTest();
   }
   
   updateMain(): void{
     this.mainForm = this.formBuilder.group({
-      ...this.testForm
+      ...this.testForm,
+      idPatient: [(this.idPatient!=="") ? this.idPatient : null, [Validators.required]]
     });
   }
 

@@ -1,3 +1,5 @@
+@import "../../../../../styles.scss";
+
 mat-toolbar{
   padding: 0px;
   background-color: rgba(0, 0, 255, 0);
@@ -16,8 +18,11 @@ mat-toolbar{
       margin-right: 8px;
       margin-left: 8px;
       a{
-        color: black;
+        color: $navLink;
         text-decoration: none;
+      }
+      .active-link{
+        color: $activeLink;
       }
     }
   }

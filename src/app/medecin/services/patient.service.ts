@@ -34,51 +34,65 @@ export class PatientService {
   }
 
   getPatient(cardId: string): void{
+    console.log(this._patient$.value);
     if(this._patient$.value.cardId !== cardId){
       this.setLoadingStatus(true);
-      this.http.request<Patient>('get', `${environment.apiUrl}/doctor/getPatient`, {body: {cardId}}).pipe(
+      this.http.get<Patient>(`${environment.apiUrl}/doctor/getPatient`, {params: {cardId}}).pipe(
       tap(val => {
-        this._patient$.next(val);
+        this._patient$.next(val['patient']);
         this.patientExists = true;
         this.setLoadingStatus(false);
-      })).subscribe()
+      })).subscribe({
+        next: (val) => console.log(val['patient']),
+        error: (err) => console.log(err),
+        complete: () => console.log('Complete', this._patient$.value)
+      })
     }
   }
 
   getPatientId(): string{
-    return this._patient$.value.id;
+    const id = this._patient$.value.cardId;
+    console.log("id", id);
+    return (id!==undefined) ? id : "";
   }
 
   updatePatient(patient: Patient): void{
     this.setLoadingStatus(true);
-    this.http.put<Patient>(`${environment.apiUrl}/doctor/updatePatient`, patient).pipe(
+    this.http.put<Patient>(`${environment.apiUrl}/doctor/updatePatient`, {cardId: patient.cardId, patient: patient}).pipe(
       tap(val => {
         console.log(val);
         this._patient$.next(patient);
         this.setLoadingStatus(false);
       })
-    ).subscribe();
+    ).subscribe({
+      next: val => console.log(val),
+      error: err => console.log(err),
+      complete: () => console.log("complete", this._patient$.value['NewPatient'])
+    });
   }
 
-  newMedication(medication: Consultation|Ordonnance|Radiologie|ExamenGeneral|ExamenLaboratoire): void{
+  newMedication(medication: Consultation|Ordonnance|Radiologie|ExamenGeneral|ExamenLaboratoire, categorie?: "consultations"|"ordonnances"|"radiologies"|"examensGeneraux"|"examensLaboratoire"): void{
     let patient : Patient = this._patient$.value;
     let type : string;
-    if(medication instanceof Consultation){
-      type = 'consultations';
-    }else if(medication instanceof Ordonnance){
-      type = 'ordonnances';
-    }else if(medication instanceof Radiologie){
-      type = 'radiologies';
-    }else if(medication instanceof ExamenGeneral){
-      type = 'examensGeneraux';
-    }else if(medication instanceof ExamenLaboratoire){
-      type = 'examensLaboratoire';
-    }else{
-      type = '';
-    }
-    if(type!==''){
-      patient[type] = [medication, ...patient[type]];
+    // if(medication instanceof Consultation){
+    //   type = 'consultations';
+    // }else if(medication instanceof Ordonnance){
+    //   type = 'ordonnances';
+    // }else if(medication instanceof Radiologie){
+    //   type = 'radiologies';
+    // }else if(medication instanceof ExamenGeneral){
+    //   type = 'examensGeneraux';
+    // }else if(medication instanceof ExamenLaboratoire){
+    //   type = 'examensLaboratoire';
+    // }else{
+    //   type = '';
+    // }
+    if(categorie){
+      patient[categorie] = [medication, ...patient[""+categorie]];
       this.updatePatient(patient);
     }
+    console.log(medication)
   }
+
+  
 }

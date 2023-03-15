@@ -20,9 +20,6 @@ export class HistoriqueComponent {
 
   ngOnInit(): void{
     this.initObservables();
-    this.route.params.subscribe(params => {
-      
-    });
   }
 
   initObservables(): void{

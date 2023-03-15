@@ -13,7 +13,7 @@
 <ng-template #showBlock>
   <div class="patient-id">
     <mat-form-field>
-      <input matInput disabled type="text" placeholder="Identifiant du patient">
+      <input matInput type="text" placeholder="Identifiant du patient" [formControl]="idControl">
     </mat-form-field>
   </div>
 </ng-template>

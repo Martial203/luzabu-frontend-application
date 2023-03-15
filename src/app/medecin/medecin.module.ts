@@ -29,7 +29,6 @@ import { MiniFooterComponent } from './components/statics/mini-footer/mini-foote
 import { UpdateMyProfileComponent } from './components/routed/parametres/update-my-profile/update-my-profile.component';
 import { DeleteMyAccountComponent } from './components/routed/parametres/delete-my-account/delete-my-account.component';
 import { FontSizeSelectionComponent } from './components/routed/parametres/font-size-selection/font-size-selection.component';
-import { httpInterceptorProviders } from './interceptors';
 import { WebcamModule } from 'ngx-webcam';
 import { CameraComponent } from './components/statics/camera/camera.component';
 import { QrCodeScannerComponent } from './components/statics/qr-code-scanner/qr-code-scanner.component';
@@ -37,6 +36,7 @@ import { SafeSourcePipe } from './pipes/safe-source.pipe';
 import { NgxScannerQrcodeModule } from 'ngx-scanner-qrcode';
 import { ConsultationsListComponent } from './components/routed/historique/consultations-list/consultations-list.component';
 import { MedicationsListComponent } from './components/routed/historique/medications-list/medications-list.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -80,11 +80,11 @@ import { MedicationsListComponent } from './components/routed/historique/medicat
     CommonModule,
     WebcamModule,
     NgxScannerQrcodeModule,
+    HttpClientModule,
     SharedModule,
     MedecinRoutingModule
   ],
   providers: [
-    httpInterceptorProviders
   ],
   exports: [
 

@@ -19,6 +19,8 @@ export class ProfilComponent {
 
   ngOnInit(): void{
     this.initObservables();
+    console.log(sessionStorage.getItem('Token'));
+    this.patientService.getPatient("UIECC2000");
   }
 
   initObservables(): void{

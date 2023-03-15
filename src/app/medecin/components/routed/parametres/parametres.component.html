@@ -1,13 +1,13 @@
 <div class="main-container">
   <div class="account-management">
-    <h2><mat-icon>key</mat-icon>Gestion de compte</h2>
+    <h2>Gestion de compte</h2>
 
     <mat-accordion>
 
       <mat-expansion-panel hideToogle>
         <mat-expansion-panel-header>
           <mat-panel-title>
-            <mat-icon>user_profile</mat-icon>Modifier mes informations
+            <mat-icon>person</mat-icon>Modifier mes informations
           </mat-panel-title>
         </mat-expansion-panel-header>
         <app-update-my-profile></app-update-my-profile>
@@ -27,11 +27,11 @@
   </div>
 
   <div class="content-management">
-    <h2><mat-icon>screen</mat-icon>Gestion de contenu</h2>
+    <h2>Gestion de contenu</h2>
 
     <div class="option">
       <p matRipple (click)="onClick('language')">
-        <mat-icon>world</mat-icon>Changer la langue (Français, Anglais)
+        <mat-icon>language</mat-icon>Changer la langue (Français, Anglais)
       </p>
       <div class="language" *ngIf="language">
         <mat-radio-group labelPosition="after">
@@ -43,14 +43,14 @@
 
     <div class="option">
       <p matRipple (click)="onClick('theme')">
-        <mat-icon>draw</mat-icon>Changer le thème (Clair, Sombre)
+        <mat-icon>palette</mat-icon>Changer le thème (Clair, Sombre)
       </p>
       <div class="theme" *ngIf="theme"><label for="theme-toggle" class="dark">Sombre</label><mat-slide-toggle id="theme-toggle"></mat-slide-toggle><label for="theme-toggle"  class="light">Clair</label></div>
     </div>
 
     <div class="option">
       <p matRipple (click)="onClick('font')">
-        <mat-icon>size</mat-icon>Modifier la taille de la police (Petite, Moyenne, Grande)
+        <mat-icon>format_size</mat-icon>Modifier la taille de la police (Petite, Moyenne, Grande)
       </p>
       <div class="font-size" *ngIf="font_size">
         <app-font-size-selection></app-font-size-selection>

@@ -1,4 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 
+$blue: #172d89;
+$activeLink: #1eb3d4;
+$patientIdBackground: #ebecec;
+$medicationFooter: #eff0f0;
+$navLink: #064553;
+$avatarBackground: #d7dbeb;
+$asideLink: #ffffff;
+$addButton: $asideLink;
+$removeButton: $patientIdBackground;
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -1,11 +1,75 @@
 <div>
-  <mat-accordion *ngIf="">
-    <mat-expansion-panel>
+  <mat-accordion *ngIf="categorie==='ordonnances'">
+    <mat-expansion-panel *ngFor="let ordonnance of patient!.ordonnances; let i=index">
       <mat-expansion-panel-header>
         <mat-panel-title>
-
+          <p>Ordonnance {{i+1}} <span>{{ordonnance.time|date}}</span></p>
         </mat-panel-title>
       </mat-expansion-panel-header>
+      <div class="container">
+        <div class="content">
+
+        </div>
+        <p class="medecin">{{ordonnance.idMedecin}}</p>
+        <p class="hopital">{{ordonnance.hopital}}</p>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <mat-list *ngIf="categorie==='consultations'">
+    <mat-list-item *ngFor="let consultation of patient!.consultations; let i=index" (click)="openDialog(consultation, i+1)">
+      <p>Consultation {{i+1}} <span>{{consultation.time|date}}</span></p>
+    </mat-list-item>
+  </mat-list>
+
+  <mat-accordion *ngIf="categorie==='examens'">
+    <mat-expansion-panel *ngFor="let examen of patient!.examensGeneraux; let i=index">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <p>Examen {{i+1}} <span>{{examen.time|date}}</span></p>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="container">
+        <div class="content">
+
+        </div>
+        <p class="medecin">{{examen.idMedecin}}</p>
+        <p class="hopital">{{examen.hopital}}</p>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <mat-accordion *ngIf="categorie==='laboratoire'">
+    <mat-expansion-panel *ngFor="let analyse of patient!.examensLaboratoire; let i=index">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <p>Analyse {{i+1}} <span>{{analyse.time|date}}</span></p>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="container">
+        <div class="content">
+
+        </div>
+        <p class="medecin">{{analyse.idMedecin}}</p>
+        <p class="hopital">{{analyse.hopital}}</p>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <mat-accordion *ngIf="categorie==='radiologie'">
+    <mat-expansion-panel *ngFor="let radiologie of patient!.radiologies; let i=index">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <p>Radiologie {{i+1}} <span>{{radiologie.time|date}}</span></p>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="container">
+        <div class="content">
+
+        </div>
+        <p class="medecin">{{radiologie.idMedecin}}</p>
+        <p class="hopital">{{radiologie.hopital}}</p>
+      </div>
     </mat-expansion-panel>
   </mat-accordion>
 </div>

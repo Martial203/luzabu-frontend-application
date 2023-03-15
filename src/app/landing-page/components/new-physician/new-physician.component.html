@@ -82,7 +82,7 @@
           </mat-form-field>
           <mat-form-field class="certificate">
             <mat-label>Certificat d'études</mat-label>
-            <mat-icon matSuffix><label for="file">attachment</label></mat-icon>
+            <mat-icon matSuffix matRipple><label for="file">picture_as_pdf</label></mat-icon>
             <input type="file" id="file" accept=".pdf" (change)="onGetImage($event)">
             <input matInput type="text" placeholder="Certificat d'études" disabled>
             <!-- <mat-error>{{ getControlError(newPhysicianForm.certificat) }}</mat-error> -->
