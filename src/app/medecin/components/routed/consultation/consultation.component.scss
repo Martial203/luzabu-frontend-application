@@ -52,7 +52,7 @@ form{
           height: 80%;
           display: flex;
           flex-direction: column;
-          justify-content: center;
+          // justify-content: center;
           align-items: center;
           div{
             text-align: center;
@@ -60,13 +60,17 @@ form{
             margin: 15px auto 0px auto;
             button{
               margin-right: 4px;
+              background-color: #ffffff;
+              mat-icon{
+                color: #000000;
+              }
             }
           }
         }
       }
       .image{
         flex: 2;
-        background-color: rgba(0, 0, 255, 0.541);
+        background-color: rgba(0, 0, 255, 0.341);
         position: relative;
         top: 25px;
         border-radius: 7px;

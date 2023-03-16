@@ -67,6 +67,13 @@
           position: relative;
           right: 35px;
           top: 100%;
+          button{
+            margin-right: 10px;
+            background-color: #ffffff;
+            mat-icon{
+              color: #000000;
+            }
+          }
         }
       }
     }
@@ -78,6 +85,13 @@
       position: relative;
       left: 10px;
       bottom: 45px;
+      button{
+        margin-right: 10px;
+        background-color: #ffffff;
+        mat-icon{
+          color: #000000;
+        }
+      }
     }
   }
   .footer{

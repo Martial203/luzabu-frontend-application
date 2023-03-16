@@ -14,6 +14,9 @@ export class ProfilComponent {
   disabled: boolean = true;
   loading!: Observable<boolean>;
   patient$!: Observable<Patient>;
+  contactsUrgence: {nom: string, relation: string, numero: string}[] = [];
+  infosMedicales: {parametre: string, valeur: string}[] = [];
+  allergies: {type: string, manifestations: string}[] = [];
 
   constructor(private patientService: PatientService) {}
 

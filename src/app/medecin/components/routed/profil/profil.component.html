@@ -5,7 +5,101 @@
       <mat-spinner></mat-spinner>
     </div>
     <div class="profile">
+      <mat-accordion multi>
 
+        <mat-expansion-panel expanded>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Informations personnelles
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="informations_personnelles">
+            <div class="bloc1">
+              <figure>
+                <img src="" alt="">
+                <legend>Nom et prénom</legend>
+              </figure>
+            </div>
+            <div class="bloc2">
+              <p><span>Age:</span> </p>
+              <p><span>Sexe:</span> </p>
+              <p><span>Téléphone:</span> </p>
+              <p><span>Profession:</span> </p>
+              <p><span>Nationalité:</span> </p>
+              <p><span>Adresse:</span> </p>
+            </div>
+          </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Contacts pour cas d'urgence
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <table class="contacts_urgences" mat-table [dataSource]="contactsUrgence">
+            <ng-container matColumnDef="Nom">
+              <th mat-header-cell *matHeaderCellDef>Nom</th>
+              <td mat-cell *matCellDef="let element">{{element.position}}</td>
+            </ng-container>
+            <ng-container matColumnDef="Relation">
+              <th mat-header-cell *matHeaderCellDef>Relation</th>
+              <td mat-cell *matCellDef="let element">{{element.position}}</td>
+            </ng-container>
+            <ng-container matColumnDef="Numero">
+              <th mat-header-cell *matHeaderCellDef>Numéro</th>
+              <td mat-cell *matCellDef="let element">{{element.position}}</td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="['Nom', 'Relation', 'Numero']"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['Nom', 'Relation', 'Numero'];"></tr>
+          </table>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Informations médicales
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <!-- <table class="infos_medicales" mat-table [dataSource]="infosMedicales">
+            <ng-container matRowDef="poids">
+              <th mat-header-cell *matHeaderCellDef>Poids</th>
+              <td mat-cell *matCellDef="let element">{{element.position}}</td>
+            </ng-container>
+            <ng-container matRowDef="taille">
+              <th mat-header-cell *matHeaderCellDef>Taille</th>
+              <td mat-cell *matCellDef="let element">{{element.position}}</td>
+            </ng-container>
+            <ng-container matRowDef="groupe_sanguin">
+              <th mat-header-cell *matHeaderCellDef>Groupe sanguin</th>
+              <td mat-cell *matCellDef="let element">{{element.position}}</td>
+            </ng-container>
+            <ng-container matRowDef="maladie_chronique">
+              <th mat-header-cell *matHeaderCellDef>Maladies chroniques</th>
+              <td mat-cell *matCellDef="let element">{{element.position}}</td>
+            </ng-container>
+            <ng-container matRowDef="antecedant_familial">
+              <th mat-header-cell *matHeaderCellDef>Antécédents familiak</th>
+              <td mat-cell *matCellDef="let element">{{element.position}}</td>
+            </ng-container>
+            <tr mat-header-column *matHeaderColumnDef="['Nom', 'Relation', 'Numéro']"></tr>
+            <tr mat-row *matColumnDef="let row; columns: ['Nom', 'Relation', 'Numéro'];"></tr>
+          </table> -->
+          <h3>Allergies</h3>
+          <table class="allergies" mat-table [dataSource]="allergies">
+            <ng-container matColumnDef="Type">
+              <th mat-header-cell *matHeaderCellDef>Type</th>
+              <td mat-cell *matCellDef="let element">{{element.position}}</td>
+            </ng-container>
+            <ng-container matColumnDef="Manifestations">
+              <th mat-header-cell *matHeaderCellDef>Manifestations</th>
+              <td mat-cell *matCellDef="let element">{{element.position}}</td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="['Type', 'Manifestations']"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['Type', 'Manifestations'];"></tr>
+          </table>
+        </mat-expansion-panel>
+      </mat-accordion>
     </div>
   </div>
   <div class="button-div">

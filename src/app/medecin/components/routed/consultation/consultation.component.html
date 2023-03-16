@@ -17,7 +17,7 @@
         <h3>Evaluation des symptômes</h3>
         <div class="symptoms-list">
           <div *ngFor="let symptom of symptomeForm; let i=index" [formGroup]="symptom">
-            <button mat-mini-fab (click)="onAddSymptom()"><mat-icon>add</mat-icon></button>
+            <button mat-mini-fab (click)="onAddSymptom()" color=""><mat-icon>add</mat-icon></button>
             <app-autocomplete-input label="Symptôme" placeholder="Symptôme" [width]="40" [min_width]="225" (value)="getSymptom($event, i)"></app-autocomplete-input>
             <mat-form-field>
               <mat-label>Commentaire</mat-label>
@@ -25,7 +25,7 @@
             </mat-form-field>
           </div>
           <div *ngFor="let diagnostique of diagnostiqueForm; let i=index" [formGroup]="diagnostique">
-            <button mat-mini-fab (click)="onAddDiagnostique()"><mat-icon>add</mat-icon></button>
+            <button mat-mini-fab (click)="onAddDiagnostique()" color=""><mat-icon color="">add</mat-icon></button>
             <app-autocomplete-input label="Diagnostique" placeholder="Diagnostique" [width]="40" [min_width]="225" (value)="getDiagnostique($event, i)"></app-autocomplete-input>
             <mat-form-field>
               <mat-label>Remarque</mat-label>

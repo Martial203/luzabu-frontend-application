@@ -1,10 +1,21 @@
 <mat-toolbar>
-  <ul>
+  <ul class="large_screen">
     <li><a routerLink="./consultation" routerLinkActive="active-link">Consultation</a></li>
     <li><a routerLink="./examen" routerLinkActive="active-link">Examen</a></li>
     <li><a routerLink="./ordonnance" routerLinkActive="active-link">Ordonnance</a></li>
     <li><a routerLink="./test-laboratoire" routerLinkActive="active-link">Examen laboratoire</a></li>
     <li><a routerLink="./radiologie" routerLinkActive="active-link">Radiologie</a></li>
     <li><a routerLink="./mes-suivis" routerLinkActive="active-link">Suivi médical</a></li>
+  </ul>
+  <ul class="phone_screen">
+    <mat-select [formControl]="route">
+      <mat-option value="home" selected>Accueil</mat-option>
+      <mat-option value="consultation">Consultation</mat-option>
+      <mat-option value="examen">Examen</mat-option>
+      <mat-option value="ordonnance">Ordonnance</mat-option>
+      <mat-option value="test-laboratoire">Examen laboratoire</mat-option>
+      <mat-option value="radiologie">Radiologie</mat-option>
+      <mat-option value="mes-suivis">Suivi médical</mat-option>
+    </mat-select>
   </ul>
 </mat-toolbar>

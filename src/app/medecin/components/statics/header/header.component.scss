@@ -3,7 +3,7 @@
 mat-toolbar{
   padding: 0px;
   background-color: rgba(0, 0, 255, 0);
-  ul{
+  .large_screen{
     padding-left: 20px;
     list-style: none;
     display: flex;
@@ -20,10 +20,30 @@ mat-toolbar{
       a{
         color: $navLink;
         text-decoration: none;
+        text-shadow: 0.5px 0.7px 0.8px;
       }
       .active-link{
         color: $activeLink;
       }
+    }
+  }
+  @media (max-width:1009px){
+    .large_screen{
+      display: none;
+    }
+  }
+  .phone_screen{
+    width: 100%;
+    text-align: right;
+    mat-select{
+      width: 200px;
+      text-align: center;
+      background-color: $medicationFooter;
+    }
+  }
+  @media (min-width:1009px){
+    .phone_screen{
+      display: none;
     }
   }
 }

@@ -22,7 +22,7 @@ export class MedecinService {
 
   signOut(): void{
     sessionStorage.clear();
-    this.router.navigateByUrl('/medecin');
+    this.router.navigateByUrl('/');
   }
 
   getToken(): string|null{

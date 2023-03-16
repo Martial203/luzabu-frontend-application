@@ -23,6 +23,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
 
 
@@ -55,6 +56,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatDialogModule,
     MatProgressSpinnerModule,
     MatMenuModule,
+    MatTableModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule
