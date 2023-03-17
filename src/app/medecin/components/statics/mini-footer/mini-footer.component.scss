@@ -2,6 +2,7 @@ div{
   display: flex;
   flex-direction: row;
   margin-bottom: 3px;
+  flex-wrap: wrap;
   app-infos-traitement{
     flex: 1;
   }

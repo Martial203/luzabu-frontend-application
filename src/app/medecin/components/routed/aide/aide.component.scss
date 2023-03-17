@@ -1,3 +1,5 @@
+@import "../../../../../styles.scss";
+
 .aide{
   .tutoriels{
     display: flex;
@@ -16,7 +18,7 @@
   }
   .message{
     padding: 20px 15px;
-    background-color: rgba(0, 85, 255, 0.555);
+    background-color: $profileBlue;
     h2{
       text-align: center;
       text-decoration: underline;

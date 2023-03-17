@@ -27,7 +27,11 @@ export class ProfilComponent {
   }
 
   initObservables(): void{
-    this.patient$ = this.patientService.patient$;
+    this.patient$ = this.patientService.patient$.pipe(
+      tap(val => {
+        console.log(val);
+      })
+    );
   }
 
   getCardId(cardId: string): void{
