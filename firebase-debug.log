@@ -26,3 +26,34 @@ Before we get started, keep in mind:
 
 [warn] !  Unable to fetch the CLI MOTD and remote config. 
 [debug] [2023-03-18T13:51:13.070Z] Failed to fetch MOTD FirebaseError: Failed to make request to https://firebase-public.firebaseio.com/cli.json
+[debug] [2023-03-18T17:50:56.507Z] ----------------------------------------------------------------------
+[debug] [2023-03-18T17:50:56.519Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\MARTIAL\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only hosting
+[debug] [2023-03-18T17:50:56.520Z] CLI Version:   11.24.1
+[debug] [2023-03-18T17:50:56.521Z] Platform:      win32
+[debug] [2023-03-18T17:50:56.521Z] Node Version:  v18.13.0
+[debug] [2023-03-18T17:50:56.653Z] Time:          Sat Mar 18 2023 18:50:56 GMT+0100 (heure normale d’Afrique de l’Ouest)
+[debug] [2023-03-18T17:50:56.655Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-03-18T17:50:56.701Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2023-03-18T17:50:57.354Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-03-18T17:50:57.355Z] > authorizing via signed-in user (martialnounga@gmail.com)
+[debug] [2023-03-18T17:50:57.356Z] [iam] checking project luzabu-bfa39 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-03-18T17:50:57.359Z] > refreshing access token with scopes: []
+[debug] [2023-03-18T17:50:57.363Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-03-18T17:50:57.364Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-03-18T17:51:14.222Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2023-03-18T17:51:14.236Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-03-18T17:51:14.469Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/luzabu-bfa39:testIamPermissions [none]
+[debug] [2023-03-18T17:51:14.475Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/luzabu-bfa39:testIamPermissions x-goog-quota-user=projects/luzabu-bfa39
+[debug] [2023-03-18T17:51:14.479Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/luzabu-bfa39:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[warn] !  Unable to fetch the CLI MOTD and remote config. 
+[debug] [2023-03-18T17:51:23.480Z] Failed to fetch MOTD FirebaseError: Failed to make request to https://firebase-public.firebaseio.com/cli.json
+[debug] [2023-03-18T17:51:46.435Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/luzabu-bfa39:testIamPermissions 200
+[debug] [2023-03-18T17:51:46.435Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/luzabu-bfa39:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-03-18T17:51:46.437Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/luzabu-bfa39 [none]
+[debug] [2023-03-18T17:52:16.478Z] Timeout reached making request to https://firebase.googleapis.com/v1beta1/projects/luzabu-bfa39
+[debug] [2023-03-18T17:52:16.507Z] FirebaseError: Timeout reached making request to https://firebase.googleapis.com/v1beta1/projects/luzabu-bfa39
+    at RetryOperation._fn (C:\Users\MARTIAL\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:238:35)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to get Firebase project luzabu-bfa39. Please make sure the project exists and your account has permission to access it.
