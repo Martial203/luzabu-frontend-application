@@ -3,7 +3,7 @@
     <div class="row1">
       <table class="profile">
         <tr>
-          <td><label for="ville">Ville: </label></td>
+          <td><label for="ville" i18n>Ville: </label></td>
           <td>
             <mat-form-field appearance="outline">
               <input matNativeControl type="text" formControlName="ville">
@@ -12,7 +12,7 @@
           </td>
         </tr>
         <tr>
-          <td><label for="telephone">Téléphone: </label></td>
+          <td><label for="telephone" i18n>Téléphone: </label></td>
           <td>
             <mat-form-field appearance="outline">
               <input matInput type="text" formControlName="telephone">
@@ -30,7 +30,7 @@
           </td>
         </tr>
         <tr>
-          <td><label for="password">Mot de passe: </label></td>
+          <td><label for="password" i18n>Mot de passe: </label></td>
           <td>
             <mat-form-field appearance="outline">
               <input matInput type="password" formControlName="password">
@@ -42,11 +42,11 @@
       <div class="avatar">
         <figure>
           <img src="" alt="">
-          <legend><label for="avatar"><button mat-button>Choisir une photo</button></label></legend>
+          <legend><label for="avatar"><button mat-button i18n>Choisir une photo</button></label></legend>
         </figure>
         <input type="file" accept="image/.jpg, image/.png/, image/.jpeg" id="avatar">
       </div>
     </div>
   </div>
-  <div class="row2"><button matRipple (click)="onSubmit()">Enregistrer</button></div>
+  <div class="row2"><button matRipple (click)="onSubmit()" i18n>Enregistrer</button></div>
 </form>

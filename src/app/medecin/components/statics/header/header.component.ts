@@ -8,9 +8,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  
+
   activeRoute!: string;
   route: FormControl = new FormControl('home');
+  showFiller = false;
 
   constructor(private router: Router) {}
 

@@ -25,9 +25,8 @@ export class AuthMedecinService {
     );
   }
 
-  getSessionInfos(): {sessionId: string, token: string}|null{
-
-    return {sessionId: "", token: ""};
+  getToken(): string|null{
+    return sessionStorage.getItem('Token');
   }
 
   signUp(medecin: Medecin): Observable<any>{

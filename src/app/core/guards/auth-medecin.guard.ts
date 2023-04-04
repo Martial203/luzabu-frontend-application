@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivateChild, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivateChild, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthMedecinService } from 'src/app/landing-page/services/auth-medecin.service';
 
@@ -8,13 +8,20 @@ import { AuthMedecinService } from 'src/app/landing-page/services/auth-medecin.s
 })
 export class AuthMedecinGuard implements CanActivateChild {
 
-  constructor(private medecinAuthService: AuthMedecinService) {}
+  authenticated: boolean = false;
+
+  constructor(private medecinAuthService: AuthMedecinService, private router: Router) {
+    this.authenticated = (this.medecinAuthService.getToken()) ? true: false;
+    if(!this.authenticated){
+      this.router.navigateByUrl('/');
+    }
+  }
   
   canActivateChild(
     childRoute: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     
-    return (this.medecinAuthService.getSessionInfos()) ? true : false;
+    return this.authenticated;
   }
 
   getSessionInfos (): string|null{

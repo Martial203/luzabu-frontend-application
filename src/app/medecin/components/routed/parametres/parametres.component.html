@@ -1,12 +1,12 @@
 <div class="main-container">
   <div class="account-management">
-    <h2>Gestion de compte</h2>
+    <h2 i18n>Gestion de compte</h2>
 
     <mat-accordion>
 
       <mat-expansion-panel>
         <mat-expansion-panel-header>
-          <mat-panel-title>
+          <mat-panel-title i18n>
             <mat-icon>person</mat-icon>Modifier mes informations
           </mat-panel-title>
         </mat-expansion-panel-header>
@@ -15,7 +15,7 @@
 
       <mat-expansion-panel>
         <mat-expansion-panel-header>
-          <mat-panel-title>
+          <mat-panel-title i18n>
             <mat-icon>delete</mat-icon>Supprimer mon compte
           </mat-panel-title>
         </mat-expansion-panel-header>
@@ -27,14 +27,14 @@
   </div>
 
   <div class="content-management">
-    <h2>Gestion de contenu</h2>
+    <h2 i18n>Gestion de contenu</h2>
 
     <div class="option">
-      <p matRipple (click)="onClick('language')">
+      <p matRipple (click)="onClick('language')" i18n>
         <mat-icon>language</mat-icon>Changer la langue (Français, Anglais)
       </p>
       <div class="language" *ngIf="language">
-        <mat-radio-group labelPosition="after">
+        <mat-radio-group labelPosition="after" [formControl]="languageCtrl">
             <mat-radio-button value="french" color="primary" checked>Français</mat-radio-button>
             <mat-radio-button value="english" color="primary">English</mat-radio-button>
         </mat-radio-group>
@@ -45,7 +45,7 @@
       <p matRipple (click)="onClick('theme')">
         <mat-icon>palette</mat-icon>Changer le thème (Clair, Sombre)
       </p>
-      <div class="theme" *ngIf="theme"><label for="theme-toggle" class="dark">Sombre</label><mat-slide-toggle id="theme-toggle"></mat-slide-toggle><label for="theme-toggle"  class="light">Clair</label></div>
+      <div class="theme" *ngIf="theme"><label for="theme-toggle" class="dark">Sombre</label><mat-slide-toggle id="theme-toggle" [formControl]="themeCtrl"></mat-slide-toggle><label for="theme-toggle" class="light">Clair</label></div>
     </div>
 
     <div class="option">

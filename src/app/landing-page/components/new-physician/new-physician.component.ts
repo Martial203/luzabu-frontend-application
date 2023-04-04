@@ -13,6 +13,9 @@ import { AuthMedecinService } from '../../services/auth-medecin.service';
 export class NewPhysicianComponent {
 
   newPhysicianForm!: FormGroup;
+  loading: boolean = false;
+  complete: boolean = false;
+
   @ViewChild('file') file!: FormControl;
 
   constructor(private router: Router, private formBuilder: FormBuilder, private medecinAuthService: AuthMedecinService){}
@@ -48,6 +51,7 @@ export class NewPhysicianComponent {
 
   onSubmit(): void{
     console.log(this.newPhysicianForm.value);
+    this.loading = true;
     if(this.newPhysicianForm.valid){
       const formValue = this.newPhysicianForm.value;
       delete formValue.conditions;
@@ -62,6 +66,7 @@ export class NewPhysicianComponent {
         next: (val) => console.log(val),
         error: (err) => console.log(err),
         complete: () => {
+          this.loading = false;
           this.router.navigateByUrl('/medecin');
         }
       });

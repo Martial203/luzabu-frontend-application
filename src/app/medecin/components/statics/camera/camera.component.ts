@@ -11,6 +11,8 @@ import { Subject, Observable } from 'rxjs';
 export class CameraComponent {
 
   images: WebcamImage[] = [];
+  loading: boolean = true;
+  accesAuthorized: boolean = true;
 
   @Output() pictureTaken: EventEmitter<WebcamImage> = new EventEmitter<WebcamImage>();
 
@@ -35,6 +37,7 @@ export class CameraComponent {
     WebcamUtil.getAvailableVideoInputs()
       .then((mediaDevices: MediaDeviceInfo[]) => {
         this.multipleWebcamsAvailable = mediaDevices && mediaDevices.length > 1;
+        this.loading = true;
       });
   }
 
@@ -48,7 +51,11 @@ export class CameraComponent {
 
   handleInitError(error: WebcamInitError): void {
     this.errors.push(error);
+    if (error.mediaStreamError && error.mediaStreamError.name === "NotAllowedError") {
+      this.accesAuthorized = false;
+    }
     console.log(this.errors);
+    
   }
 
   showNextWebcam(directionOrDeviceId: boolean|string): void {

@@ -1,5 +1,5 @@
 <div class="aside">
-  <p><a routerLink="/medecin/home">Accueil</a></p>
+  <p><a routerLink="/medecin/home" i18n>Accueil</a></p>
   <div class="avatar">
     <figure>
       <img src="/assets/doctor.jpg" alt="Doctor's name">
@@ -9,20 +9,20 @@
 
   <div class="side-nav">
     <mat-nav-list>
-      <a routerLink="/medecin/profil" routerLinkActive="active-link" mat-list-item><li><mat-icon>account_circle</mat-icon><span>PROFIL</span></li></a>
-      <a [matMenuTriggerFor]="menu" routerLinkActive="active-link" mat-list-item><li><mat-icon >date_range</mat-icon><span>HISTORIQUE</span></li></a>
-      <a routerLink="/medecin/parametres" routerLinkActive="active-link" mat-list-item><li><mat-icon >settings</mat-icon><span>PARAMETRES</span></li></a>
-      <a routerLink="/medecin/aide" routerLinkActive="active-link" mat-list-item><li><mat-icon >help</mat-icon><span>AIDE</span></li></a>
-      <a routerLink="/medecin/a-propos" routerLinkActive="active-link" mat-list-item><li><mat-icon >info</mat-icon><span>A PROPOS</span></li></a>
-      <a (click)="onSignOut()" mat-list-item><li><mat-icon>settings_power</mat-icon><span>DECONNEXION</span></li></a>
+      <a routerLink="/medecin/profil" routerLinkActive="active-link" mat-list-item><li i18n><mat-icon>account_circle</mat-icon><span>PROFIL</span></li></a>
+      <a [matMenuTriggerFor]="menu" routerLinkActive="active-link" mat-list-item><li i18n><mat-icon >date_range</mat-icon><span>HISTORIQUE</span></li></a>
+      <a routerLink="/medecin/parametres" routerLinkActive="active-link" mat-list-item><li i18n><mat-icon >settings</mat-icon><span>PARAMETRES</span></li></a>
+      <a routerLink="/medecin/aide" routerLinkActive="active-link" mat-list-item><li i18n><mat-icon >help</mat-icon><span>AIDE</span></li></a>
+      <a routerLink="/medecin/a-propos" routerLinkActive="active-link" mat-list-item><li i18n><mat-icon >info</mat-icon><span>A PROPOS</span></li></a>
+      <a (click)="onSignOut()" mat-list-item><li><mat-icon>settings_power</mat-icon><span i18n>DECONNEXION</span></li></a>
     </mat-nav-list>
   </div>
 </div>
 
 <mat-menu #menu="matMenu">
-  <a mat-menu-item routerLink="/medecin/historique/examensGeneraux">Mes examens</a>
-  <a mat-menu-item routerLink="/medecin/historique/consultations">Mes consultations</a>
-  <a mat-menu-item routerLink="/medecin/historique/ordonnances">Mes ordonnances</a>
-  <a mat-menu-item routerLink="/medecin/historique/laboratoire">Mes résultats labo</a>
-  <a mat-menu-item routerLink="/medecin/historique/imagerie">Mes résultats imagerie</a>
+  <a mat-menu-item routerLink="/medecin/historique/examensGeneraux" i18n>Mes examens</a>
+  <a mat-menu-item routerLink="/medecin/historique/consultations" i18n>Mes consultations</a>
+  <a mat-menu-item routerLink="/medecin/historique/ordonnances" i18n>Mes ordonnances</a>
+  <a mat-menu-item routerLink="/medecin/historique/laboratoire" i18n>Mes résultats labo</a>
+  <a mat-menu-item routerLink="/medecin/historique/imagerie" i18n>Mes résultats imagerie</a>
 </mat-menu>

@@ -5,10 +5,12 @@ div{
   flex-wrap: wrap;
   app-infos-traitement{
     flex: 1;
+    min-width: 225px;
   }
   app-submit{
     flex: 1;
     margin-left: 15px;
     align-self: flex-end;
+    min-width: 225px;
   }
 }

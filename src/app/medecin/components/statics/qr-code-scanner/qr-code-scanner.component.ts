@@ -10,7 +10,7 @@ import { ScannerQRCodeConfig, ScannerQRCodeSelectedFiles, NgxScannerQrcodeCompon
 export class QrCodeScannerComponent {
 
   config: ScannerQRCodeConfig = {
-    // fps: 1000,
+    fps: 1000,
     vibrate: 400,
     // isBeep: true,
     // decode: 'macintosh',
@@ -33,11 +33,15 @@ export class QrCodeScannerComponent {
     setTimeout(() => this.action.start(), 1000);
   }
 
+  ngOnDestroy(): void {
+    this.handle(this.action, 'stop');
+  }
+
   public onEvent(e: ScannerQRCodeResult[]): void {
     console.log(e);
     this.scan.emit(e[0].value);
+    this.handle(this.action, 'stop');
     this.dialogRef.close(e[0].value);
-    this.config.deviceActive = undefined;
   }
 
   public handle(action: any, fn: string): void {

@@ -3,6 +3,12 @@
 mat-toolbar{
   padding: 0px;
   background-color: rgba(0, 0, 255, 0);
+  @media (max-width: $break1){
+    &{
+      background-color: rgba(0, 0, 255, 1);
+      height: 75px;
+    }
+  }
   .large_screen{
     padding-left: 20px;
     list-style: none;
@@ -28,7 +34,7 @@ mat-toolbar{
     }
   }
   @media (max-width:1009px){
-    .large_screen{
+    &{
       display: none;
     }
   }
@@ -38,12 +44,18 @@ mat-toolbar{
     mat-select{
       width: 200px;
       text-align: center;
-      background-color: $medicationFooter;
     }
   }
   @media (min-width:1009px){
     .phone_screen{
       display: none;
     }
+  }
+}
+div{
+  text-align: center;
+  mat-chip-listbox{
+    display: inline-block;
+    text-align: center;
   }
 }

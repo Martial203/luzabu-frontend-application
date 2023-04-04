@@ -11,6 +11,9 @@ import { AuthMedecinService } from '../../services/auth-medecin.service';
 export class PhysicianLoginComponent {
 
   loginForm!: FormGroup;
+  loading: boolean = false;
+  complete: boolean = false;
+  error: boolean = false;
 
   constructor(private medecinAuthService: AuthMedecinService, private router: Router, private formBuilder: FormBuilder) {}
 
@@ -23,11 +26,20 @@ export class PhysicianLoginComponent {
 
   onSubmitForm(): void{
     console.log(this.loginForm.value)
+    this.error = false;
+    this.loading = true;
     if(this.loginForm.valid){
       this.medecinAuthService.signIn(this.loginForm.value).subscribe({
         next: (val) => console.log(val),
-        error: (err) => console.log(err),
-        complete: () => this.router.navigateByUrl('/medecin')
+        error: (err) => {
+          this.loading = false;
+          this.error = true;
+        },
+        complete: () => {
+          this.loading = false;
+          this.complete = true;
+          this.router.navigateByUrl('/medecin')
+        }
       })
     }
   }

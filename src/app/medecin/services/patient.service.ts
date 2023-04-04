@@ -8,6 +8,8 @@ import { ExamenGeneral } from '../models/examen-general';
 import { ExamenLaboratoire } from '../models/examen-laboratoire';
 import { Ordonnance } from '../models/ordonnance';
 import { Radiologie } from '../models/radiologie';
+import { MatDialog } from '@angular/material/dialog';
+import { ErrorsComponent } from 'src/app/core/components/errors/errors.component';
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +18,11 @@ export class PatientService {
 
   private _patient$: BehaviorSubject<Patient> = new BehaviorSubject<Patient>(new Patient());
   private _loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private _error$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   private patientExists : boolean = false;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private dialog: MatDialog) { }
 
   get patient$(): Observable<Patient>{
     return this._patient$.asObservable();
@@ -27,6 +30,14 @@ export class PatientService {
 
   get loading$(): Observable<boolean>{
     return this._loading$.asObservable();
+  }
+
+  get error$(): Observable<boolean>{
+    return this._error$.asObservable();
+  }
+
+  private setErrorStatus(error: boolean): void{
+    this._error$.next(error);
   }
 
   private setLoadingStatus(loading: boolean): void{
@@ -37,14 +48,19 @@ export class PatientService {
     console.log(this._patient$.value);
     if(this._patient$.value.cardId !== cardId){
       this.setLoadingStatus(true);
+      this.setErrorStatus(false);
       this.http.get<Patient>(`${environment.apiUrl}/doctor/getPatient`, {params: {cardId}}).pipe(
       tap(val => {
         this._patient$.next(val['patient']);
         this.patientExists = true;
         this.setLoadingStatus(false);
+        console.log(val['patient'])
       })).subscribe({
         next: (val) => console.log(val['patient']),
-        error: (err) => console.log(err),
+        error: (err) => {
+          this.setErrorStatus(true),
+          this.setLoadingStatus(false);
+        },
         complete: () => console.log('Complete', this._patient$.value)
       })
     }
@@ -58,6 +74,7 @@ export class PatientService {
 
   updatePatient(patient: Patient): void{
     this.setLoadingStatus(true);
+    this.setErrorStatus(false);
     this.http.put<Patient>(`${environment.apiUrl}/doctor/updatePatient`, {cardId: patient.cardId, patient: patient}).pipe(
       tap(val => {
         console.log(val);
@@ -66,8 +83,15 @@ export class PatientService {
       })
     ).subscribe({
       next: val => console.log(val),
-      error: err => console.log(err),
-      complete: () => console.log("complete", this._patient$.value['NewPatient'])
+      error: err => {
+        this.setErrorStatus(true);
+        this.setLoadingStatus(false);
+        this.dialog.open(ErrorsComponent)
+      },
+      complete: () => {
+        console.log("complete", this._patient$.value['NewPatient'])
+        alert("Mise à jour effectuée avec succès");
+      }
     });
   }
 
@@ -94,5 +118,5 @@ export class PatientService {
     console.log(medication)
   }
 
-  
+
 }

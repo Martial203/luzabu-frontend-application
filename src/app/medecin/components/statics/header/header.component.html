@@ -5,17 +5,29 @@
     <li><a routerLink="./ordonnance" routerLinkActive="active-link">Ordonnance</a></li>
     <li><a routerLink="./test-laboratoire" routerLinkActive="active-link">Examen laboratoire</a></li>
     <li><a routerLink="./radiologie" routerLinkActive="active-link">Radiologie</a></li>
-    <li><a routerLink="./mes-suivis" routerLinkActive="active-link">Suivi médical</a></li>
+    <li><a routerLink="./mes-suivis" routerLinkActive="active-link" i18n>Suivi médical</a></li>
   </ul>
-  <ul class="phone_screen">
-    <mat-select [formControl]="route">
-      <mat-option value="home" selected>Accueil</mat-option>
-      <mat-option value="consultation">Consultation</mat-option>
-      <mat-option value="examen">Examen</mat-option>
-      <mat-option value="ordonnance">Ordonnance</mat-option>
-      <mat-option value="test-laboratoire">Examen laboratoire</mat-option>
-      <mat-option value="radiologie">Radiologie</mat-option>
-      <mat-option value="mes-suivis">Suivi médical</mat-option>
-    </mat-select>
-  </ul>
+  <!-- <ul class="phone_screen">
+    <mat-form-field appearance="fill">
+      <mat-select matInput [formControl]="route">
+        <mat-option value="home">Accueil</mat-option>
+        <mat-option value="consultation">Consultation</mat-option>
+        <mat-option value="examen">Examen</mat-option>
+        <mat-option value="ordonnance">Ordonnance</mat-option>
+        <mat-option value="test-laboratoire">Examen laboratoire</mat-option>
+        <mat-option value="radiologie">Radiologie</mat-option>
+        <mat-option value="mes-suivis">Suivi médical</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </ul> -->
 </mat-toolbar>
+<div>
+  <mat-chip-listbox aria-label="option-selection" [formControl]="route">
+    <mat-chip-option value="consultation" i18n>Consultation</mat-chip-option>
+    <mat-chip-option value="examen" i18n>Examen</mat-chip-option>
+    <mat-chip-option value="ordonnance" i18n>Ordonnance</mat-chip-option>
+    <mat-chip-option value="test-laboratoire" i18n>Examen laboratoire</mat-chip-option>
+    <mat-chip-option value="radiologie" i18n>Radiologie</mat-chip-option>
+    <mat-chip-option value="mes-suivis" i18n>Suivi médical</mat-chip-option>
+  </mat-chip-listbox>
+</div>

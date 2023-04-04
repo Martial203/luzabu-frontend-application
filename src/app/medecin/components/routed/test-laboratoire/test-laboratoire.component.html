@@ -5,15 +5,15 @@
       <div *ngFor="let test of testForm; let i=index" [formGroup]="test">
         <div class="bloc1">
           <mat-form-field>
-            <mat-label>Type de test</mat-label>
+            <mat-label i18n>Type de test</mat-label>
             <input matInput type="text" placeholder="Type de test" formControlName="type">
           </mat-form-field>
           <mat-form-field>
-            <mat-label>Résultat</mat-label>
+            <mat-label i18n>Résultat</mat-label>
             <input matInput type="text" placeholder="Résultat" formControlName="result">
           </mat-form-field>
           <mat-form-field>
-            <mat-label>Nom du laboratoire</mat-label>
+            <mat-label i18n>Nom du laboratoire</mat-label>
             <input matInput type="text" placeholder="Nom du laboratoire" formControlName="laboratoire">
           </mat-form-field>
         </div>
@@ -25,6 +25,6 @@
     <div class="add-button" (click)="onAddTest()"><button mat-mini-fab><mat-icon>add</mat-icon></button></div>
   </div>
   <div class="footer">
-    <app-mini-footer (images)="getImages($event)" (submit)="onSubmit()" [disabled]="mainForm.invalid"></app-mini-footer>
+    <app-mini-footer (images)="getImages($event)" (submit)="onSubmit()" [disabled]="mainForm.invalid || (loading$ | async)!"></app-mini-footer>
   </div>
 </div>

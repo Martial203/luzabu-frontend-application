@@ -5,14 +5,14 @@
 		 (initError)="handleInitError($event)" [imageQuality]="1"></webcam>
 		<br/>
 		<div class="buttons">
-      <button mat-icon-button class="actionBtn" (click)="triggerSnapshot();" title="Capture"><mat-icon>camera</mat-icon></button>
+      <button mat-icon-button class="actionBtn" (click)="triggerSnapshot();" title="Capture" [disabled]="loading"><mat-icon *ngIf="!loading">camera</mat-icon><mat-spinner [diameter]="5" *ngIf="loading"></mat-spinner></button>
       <!-- <button mat-icon-button class="actionBtn" (click)="showNextWebcam(true);" title="Switch Camera"><mat-icon>circle</mat-icon></button> -->
-      <button mat-flat-button class="submit" [mat-dialog-close]="images">Terminer</button>
+      <button mat-flat-button class="submit" [mat-dialog-close]="images" i18n>Terminer</button>
     </div>
 	</div>
 </div>
 
 <h4 *ngIf="errors.length > 0">Messages:</h4>
 <ul *ngFor="let error of errors">
-	<li>{{error | json}}</li>
+	<li>{{ accessAuthorized ? "Une erreur est survenue, veuillez ressayer s'il vous plaît !" : "Autorisation d'accès à la camera refusée par l'utilisateur !"</li>
 </ul>

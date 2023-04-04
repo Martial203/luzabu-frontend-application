@@ -6,23 +6,90 @@
           <p>Ordonnance {{i+1}} <span>{{ordonnance.time|date}}</span></p>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <div class="container">
-        <div class="content">
-
-        </div>
+      <div class="medicaments">
+        <table class="contacts_urgences" mat-table [dataSource]="ordonnance.medicaments">
+          <ng-container matColumnDef="nom">
+            <th mat-header-cell *matHeaderCellDef>Nom </th>
+            <td mat-cell *matCellDef="let element">{{element.nom+" - "+element.dosage}}</td>
+          </ng-container>
+          <ng-container matColumnDef="famille">
+            <th mat-header-cell *matHeaderCellDef>Famille </th>
+            <td mat-cell *matCellDef="let element">{{element.famille}}</td>
+          </ng-container>
+          <ng-container matColumnDef="forme">
+            <th mat-header-cell *matHeaderCellDef>Forme </th>
+            <td mat-cell *matCellDef="let element">{{element.forme}}</td>
+          </ng-container>
+          <ng-container matColumnDef="posologie">
+            <th mat-header-cell *matHeaderCellDef>Posologie </th>
+            <td mat-cell *matCellDef="let element">{{element.posologie}}</td>
+          </ng-container>
+          <ng-container matColumnDef="observations">
+            <th mat-header-cell *matHeaderCellDef>Observations </th>
+            <td mat-cell *matCellDef="let element">{{element.observations.join(', ')}}</td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="['nom', 'famille', 'forme', 'posologie', 'observations']"></tr>
+          <tr mat-row *matRowDef="let row; columns: ['nom', 'famille', 'forme', 'posologie', 'observations'];"></tr>
+        </table>
         <p class="medecin">{{ordonnance.idMedecin}}</p>
         <p class="hopital">{{ordonnance.hopital}}</p>
       </div>
     </mat-expansion-panel>
   </mat-accordion>
 
-  <mat-list *ngIf="categorie==='consultations'">
-    <mat-list-item *ngFor="let consultation of patient!.consultations; let i=index" (click)="openDialog(consultation, i+1)">
-      <p>Consultation {{i+1}} <span>{{consultation.time|date}}</span></p>
-    </mat-list-item>
-  </mat-list>
+  <mat-accordion *ngIf="categorie==='consultations'">
+    <mat-expansion-panel *ngFor="let consultation of patient!.consultations; let i=index" (click)="openDialog(consultation, i+1)">
+      <mat-expansion-panel-header><mat-panel-title>Consultation {{i+1}} <span>{{consultation.time|date}}</span><span>{{consultation.examen_clinique.motif_consultation}}</span></mat-panel-title></mat-expansion-panel-header>
+      <div class="consultation">
+        <div class="bloc1">
+          <table *ngIf="consultation.examen_clinique as examClin">
+            <tr><td>Motif de consultation</td><td>{{examClin.motif_consultation}}</td></tr>
+            <tr><td>Taille patient</td><td>{{examClin.age}}</td></tr> 
+            <tr><td>Taille patient</td><td>{{examClin.taille}}</td></tr> 
+            <tr><td>Température</td><td>{{examClin.temperature}}</td></tr>
+            <tr><td>Pression artérielle</td><td>{{examClin.pression_arterielle}}</td></tr> 
+            <tr><td>Poids du patient</td><td>{{examClin.poids}}</td></tr> 
+            <tr><td>Pouls du patient</td><td>{{examClin.pouls}}</td></tr> 
+            <tr><td>Spo2 du patient</td><td>{{examClin.spo2}}</td></tr>
+          </table>
+        </div>
+        <div class="bloc2">
+          <div class="symptoms">
+            <h2>Symptômes</h2>
+            <table class="contacts_urgences" mat-table [dataSource]="consultation.symptomes">
+              <ng-container matColumnDef="symptome">
+                <th mat-header-cell *matHeaderCellDef>Symptômes</th>
+                <td mat-cell *matCellDef="let element">{{element.symptome}}</td>
+              </ng-container>
+              <ng-container matColumnDef="commentaire">
+                <th mat-header-cell *matHeaderCellDef>Commentaires</th>
+                <td mat-cell *matCellDef="let element">{{element.commentaire}}</td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="['symptome', 'commentaire']"></tr>
+              <tr mat-row *matRowDef="let row; columns: ['symptome', 'commentaire'];"></tr>
+            </table>  
+          </div>
+          <div class="history">
+            <h2>Antécédents</h2>
+            <table class="contacts_urgences" mat-table [dataSource]="consultation.diagnostiques">
+              <ng-container matColumnDef="diagnostique">
+                <th mat-header-cell *matHeaderCellDef>Diagnostics</th>
+                <td mat-cell *matCellDef="let element">{{element.diagnostique}}</td>
+              </ng-container>
+              <ng-container matColumnDef="remarque">
+                <th mat-header-cell *matHeaderCellDef>Remarques</th>
+                <td mat-cell *matCellDef="let element">{{element.remarque}}</td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="['diagnostique', 'remarque']"></tr>
+              <tr mat-row *matRowDef="let row; columns: ['diagnostique', 'remarque'];"></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
 
-  <mat-accordion *ngIf="categorie==='examens'">
+  <mat-accordion *ngIf="categorie==='examensGeneraux'">
     <mat-expansion-panel *ngFor="let examen of patient!.examensGeneraux; let i=index">
       <mat-expansion-panel-header>
         <mat-panel-title>
@@ -30,8 +97,19 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
       <div class="container">
-        <div class="content">
-
+        <div class="content" *ngFor="let exam of examen.examens">
+          <table class="contacts_urgences" mat-table [dataSource]="examen.examens">
+            <ng-container matColumnDef="examen">
+              <th mat-header-cell *matHeaderCellDef i18n>Examen</th>
+              <td mat-cell *matCellDef="let element">{{element.examen}}</td>
+            </ng-container>
+            <ng-container matColumnDef="consignes">
+              <th mat-header-cell *matHeaderCellDef i18n>Consigne</th>
+              <td mat-cell *matCellDef="let element">{{element.consignes.join(', ')}}</td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="['examen', 'consignes']"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['type', 'consignes'];"></tr>
+          </table>
         </div>
         <p class="medecin">{{examen.idMedecin}}</p>
         <p class="hopital">{{examen.hopital}}</p>
@@ -43,12 +121,31 @@
     <mat-expansion-panel *ngFor="let analyse of patient!.examensLaboratoire; let i=index">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          <p>Analyse {{i+1}} <span>{{analyse.time|date}}</span></p>
+          <p i18n>Analyse {{i+1}} <span>{{analyse.time|date}}</span></p>
         </mat-panel-title>
       </mat-expansion-panel-header>
       <div class="container">
         <div class="content">
-
+          <table class="contacts_urgences" mat-table [dataSource]="analyse.tests">
+            <ng-container matColumnDef="type">
+              <th mat-header-cell *matHeaderCellDef i18n>Type</th>
+              <td mat-cell *matCellDef="let element">{{element.type}}</td>
+            </ng-container>
+            <ng-container matColumnDef="result">
+              <th mat-header-cell *matHeaderCellDef i18n>Résultat</th>
+              <td mat-cell *matCellDef="let element">{{element.result}}</td>
+            </ng-container>
+            <ng-container matColumnDef="laboratoire">
+              <th mat-header-cell *matHeaderCellDef i18n>Laboratoire</th>
+              <td mat-cell *matCellDef="let element">{{element.laboratoire}}</td>
+            </ng-container>
+            <ng-container matColumnDef="remarks">
+              <th mat-header-cell *matHeaderCellDef i18n>Remarques</th>
+              <td mat-cell *matCellDef="let element">{{element.remarks.join(', ')}}</td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="['type', 'result', 'laboratoire', 'remarks']"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['type', 'result', 'laboratoire', 'remarks'];"></tr>
+          </table>
         </div>
         <p class="medecin">{{analyse.idMedecin}}</p>
         <p class="hopital">{{analyse.hopital}}</p>
@@ -56,16 +153,27 @@
     </mat-expansion-panel>
   </mat-accordion>
 
-  <mat-accordion *ngIf="categorie==='radiologie'">
+  <mat-accordion *ngIf="categorie==='imagerie'">
     <mat-expansion-panel *ngFor="let radiologie of patient!.radiologies; let i=index">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          <p>Radiologie {{i+1}} <span>{{radiologie.time|date}}</span></p>
+          <p i18n>Radiologie {{i+1}} <span>{{radiologie.time|date}}</span></p>
         </mat-panel-title>
       </mat-expansion-panel-header>
       <div class="container">
         <div class="content">
-
+          <table class="contacts_urgences" mat-table [dataSource]="radiologie.examens">
+            <ng-container matColumnDef="titre">
+              <th mat-header-cell *matHeaderCellDef i18n>Titre</th>
+              <td mat-cell *matCellDef="let element">{{element.titre}}</td>
+            </ng-container>
+            <ng-container matColumnDef="results">
+              <th mat-header-cell *matHeaderCellDef i18n>Résultats</th>
+              <td mat-cell *matCellDef="let element">{{element.results.join(', ')}}</td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="['titre', 'results']"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['titre', 'results'];"></tr>
+          </table>
         </div>
         <p class="medecin">{{radiologie.idMedecin}}</p>
         <p class="hopital">{{radiologie.hopital}}</p>

@@ -1,24 +1,31 @@
-<div class="main-container">
-  <aside title="Connexion">
-    <app-landing-aside></app-landing-aside>
-  </aside>
-  <div class="form">
-    <form (ngSubmit)="onSubmitForm()" enctype="multipart/form-data" [formGroup]="loginForm">
-      <h1>Connexion</h1>
-      <mat-form-field>
-        <mat-label>Matricule</mat-label>
-        <mat-icon matSuffix>account_circle</mat-icon>
-        <input matInput type="text" placeholder="matricule" formControlName="matricule" id="matricule" required>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Mot de passe</mat-label>
-        <mat-icon matSuffix>lock</mat-icon>
-        <input matInput type="password" placeholder="Mot de passe" formControlName="password" id="password" required>
-      </mat-form-field>
-      <p>Pas encore de compte ? <a routerLink="/new-physician">Inscrivez vous ici</a></p>
-      <div class="buttons">
-        <button mat-raised-button type="submit" [disabled]="loginForm.invalid">Se connecter</button>
-      </div>
-    </form>
+<div class="body">
+  <div class="main-container">
+    <div class="left">
+      <form (ngSubmit)="onSubmitForm()" enctype="multipart/form-data" [formGroup]="loginForm">
+        <h1 i18n>Bon retour parmi nous</h1>
+        <p i18n>Veuillez entrer vos informations de connexion.</p>
+        <mat-form-field appearance="outline">
+          <mat-label i18n>Matricule</mat-label>
+          <mat-icon matSuffix>account_circle</mat-icon>
+          <input matInput type="text" placeholder="Matricule" formControlName="matricule" id="matricule" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label i18n>Mot de passe</mat-label>
+          <mat-icon matSuffix>lock</mat-icon>
+          <input matInput type="password" placeholder="Mot de passe" formControlName="password" id="password" required>
+        </mat-form-field>
+        <p i18n>Pas encore de compte ? <a routerLink="/new-physician">Inscrivez vous ici</a></p>
+        <div class="buttons">
+          <div *ngIf="loading || complete || error" class="spinner">
+            <mat-spinner *ngIf="loading" [diameter]="25"></mat-spinner>
+            <div *ngIf="error" class="error-div" i18n><mat-icon>report_problem</mat-icon>Echec d'authentification, veuillez ressayer !</div>
+            <p *ngIf="complete" i18n><mat-icon>verified_user</mat-icon>Authentification effectuée avec succès !</p>
+          </div>
+          <button mat-raised-button type="submit" [disabled]="loginForm.invalid || loading" i18n>Se connecter</button>
+        </div>
+      </form>
+    </div>
+    <div class="right">
+    </div>
   </div>
 </div>

@@ -1,3 +1,5 @@
+@import "../../styles.scss";
+
 .main-container{
   display: flex;
   flex-direction: row;
@@ -8,19 +10,47 @@
     min-width: 200px;
     max-width: 240px;
     overflow-y: auto;
+    @media(max-width:$break1){
+      &{
+        display: none;
+      }
+    }
   }
-  main{
+  mat-drawer-container{
     flex: 3;
     height: 100%;
     display: flex;
     flex-direction: column;
-    header{
-      flex: 1;
+    main{
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      header{
+        flex: 1;
+      }
+      div{
+        flex: 25;
+        overflow: auto;
+        padding: 10px 15px;
+      }
+      mat-drawer{
+        width: 250px;
+      }
     }
-    div{
-      flex: 25;
-      overflow: auto;
-      padding: 10px 15px;
+  }
+}
+.sidenav-button{
+  position: absolute;
+  z-index: 1;
+  top: 5px;
+  button{
+    mat-icon{
+      color: #ffffff;
+    }
+  }
+  @media (min-width: $break1){
+    &{
+      display: none;
     }
   }
 }

@@ -13,17 +13,24 @@ export class HistoriqueComponent {
 
   cardId!: string;
   disabled: boolean = true;
-  loading!: Observable<boolean>;
+  loading$!: Observable<boolean>;
+  error$!: Observable<boolean>;
   patient$!: Observable<Patient>;
+  categorie!: string;
 
   constructor(private patientService: PatientService, private route: ActivatedRoute) {}
 
   ngOnInit(): void{
+    console.log("joe");
     this.initObservables();
+    this.route.params.subscribe(val => this.categorie = val['categorie']);
+    this.patientService.getPatient('UIECC2000');
   }
 
   initObservables(): void{
     this.patient$ = this.patientService.patient$;
+    this.loading$ = this.patientService.loading$;
+    this.error$ = this.patientService.error$;    
   }
 
   getCardId(cardId: string): void{

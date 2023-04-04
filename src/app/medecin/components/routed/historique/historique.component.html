@@ -1,14 +1,13 @@
 <div class="main-container">
   <app-patient-id [input]="true"></app-patient-id>
   <div class="main-content">
-    <div *ngIf="loading" class="spinner">
-      <mat-spinner></mat-spinner>
-    </div>
-    <div class="history">
-      <app-medications-list [patient]="patient$ | async"></app-medications-list>
+    <div *ngIf="loading$ | async" class="spinner"><mat-spinner></mat-spinner></div>
+    <div *ngIf="error$ | async" class="spinner-div" i18n><mat-icon>report_problem</mat-icon>Une erreur est survenu. Veuillez verifier votre connexion internet, puis ressayer !</div>
+    <div *ngIf="!(loading$ | async) && !(error$ | async)" class="history">
+      <app-medications-list [patient]="patient$ | async" [categorie]="categorie"></app-medications-list>
     </div>
   </div>
   <div class="button-div">
-    <button mat-fab extended color="primary" [disabled]="disabled" (click)="getPatientHistory()">Démander accès</button>
+    <button mat-fab extended color="primary" [disabled]="disabled" (click)="getPatientHistory()" i18n>Démander accès</button>
   </div>
 </div>

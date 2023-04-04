@@ -15,6 +15,6 @@
     </form>
   </div>
   <div class="footer">
-    <app-mini-footer (images)="getImages($event)" (submit)="onSubmit()" [disabled]="mainForm.invalid"></app-mini-footer>
+    <app-mini-footer (images)="getImages($event)" (submit)="onSubmit()" [disabled]="mainForm.invalid || (loading$ | async)!"></app-mini-footer>
   </div>
 </div>

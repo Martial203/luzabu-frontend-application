@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { WebcamImage } from 'ngx-webcam';
+import { Observable } from 'rxjs';
 import { Radiologie } from 'src/app/medecin/models/radiologie';
 import { FormService } from 'src/app/medecin/services/form.service';
 import { PatientService } from 'src/app/medecin/services/patient.service';
@@ -16,6 +17,7 @@ export class RadiologieComponent {
   radiologieForm: FormGroup[] = [];
   images: WebcamImage[] = [];
   imagesFiles: File[] = [];
+  loading$!: Observable<boolean>;
 
   @ViewChild('radioForm') form!: NgForm;
 
@@ -25,6 +27,7 @@ export class RadiologieComponent {
 
   ngOnInit(): void{
     this.onAddRadiologie();
+    this.loading$ = this.patientService.loading$;
   }
 
   updateMain(): void{

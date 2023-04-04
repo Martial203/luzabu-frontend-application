@@ -20,58 +20,66 @@
       border: solid #ffffff 1px;
       width: 100%;
       height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
       padding: 12px 10px;
-      >div{
+      mat-accordion{
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
         width: 100%;
-        height: 100%;
-        margin-top: 5px;
-        .bloc1{
-          border: solid 1px;
-          flex: 1;
-          padding: 10px;
-          margin-right: 10px;
-          mat-form-field{
-            display: block;
-          }
-          mat-form-field:last-of-type{
-            height: 57px;
-          }
-        }
-        .bloc2{
-          flex: 1;
-          border: solid 1px;
-          padding: 10px;
-          padding-bottom: 0px;
-          margin-left: 10px;
-          margin-right: 5px;
-          align-self: stretch;
-          div{
+        mat-expansion-panel{
+          width: 95%;
+          .panel-content{
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            mat-form-field{
-              display: block;
+            flex-direction: row;
+            flex-wrap: wrap;
+            width: 100%;
+            height: 100%;
+            margin-top: 5px;
+            .bloc1{
+              border: solid 1px #0000006e;
+              flex: 1;
+              padding: 10px;
+              margin-right: 10px;
+              min-width: 300px;
+              mat-form-field{
+                display: block;
+              }
+              mat-form-field:last-of-type{
+                height: 57px;
+              }
+            }
+            .bloc2{
+              flex: 1;
+              border: solid 1px #0000006e;
+              padding: 10px;
+              padding-bottom: 0px;
+              margin-left: 10px;
+              margin-right: 5px;
+              align-self: stretch;
+              div{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                mat-form-field{
+                  display: block;
+                }
+              }
             }
           }
-        }
-        .add-button{
-          width: 0px;
-          height: 0px;
-          overflow: visible;
-          position: relative;
-          right: 35px;
-          top: 100%;
-          button{
-            margin-right: 10px;
-            background-color: #ffffff;
-            mat-icon{
-              color: #000000;
+          .add-button{
+            width: 0px;
+            height: 0px;
+            overflow: visible;
+            position: relative;
+            right: 35px;
+            top: 100%;
+            button{
+              margin-right: 10px;
+              background-color: #ffffff;
+              mat-icon{
+                color: #000000;
+              }
             }
           }
         }
@@ -96,5 +104,14 @@
   }
   .footer{
     flex: 1;
+    .spinner{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      mat-spinner{
+        display: block;
+      }
+    }
   }
 }

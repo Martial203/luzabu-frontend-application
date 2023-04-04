@@ -1,63 +1,82 @@
 <div class="main-container">
   <app-patient-id [input]="true" (cardId)="getCardId($event)"></app-patient-id>
   <div class="main-content">
-    <div *ngIf="loading" class="spinner">
-      <mat-spinner></mat-spinner>
-    </div>
-    <div class="profile">
+    <div *ngIf="loading$ | async" class="spinner-div"><mat-spinner></mat-spinner></div>
+    <div *ngIf="error$ | async" class="spinner-div" i18n><mat-icon>report_problem</mat-icon>Une erreur est survenu. Veuillez verifier votre connexion internet, puis ressayer !</div>
+    <div class="profile" *ngIf="(patient$ | async)!['_id']!==undefined && !(loading$ | async)">
       <mat-accordion multi>
 
         <mat-expansion-panel expanded>
           <mat-expansion-panel-header>
-            <mat-panel-title>
+            <mat-panel-title i18n>
               Informations personnelles
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <div class="informations_personnelles">
+          <div class="informations_personnelles" *ngIf="(patient$ | async)!['userProfile'] as patient">
             <div class="bloc1">
               <figure>
                 <img src="" alt="">
-                <legend>Nom et prénom</legend>
+                <legend>{{patient.firstName+" "+patient.lastName}}</legend>
               </figure>
             </div>
             <div class="bloc2">
-              <p><span>Age:</span> </p>
-              <p><span>Sexe:</span> </p>
-              <p><span>Téléphone:</span> </p>
-              <p><span>Profession:</span> </p>
-              <p><span>Nationalité:</span> </p>
-              <p><span>Adresse:</span> </p>
+              <table height=180>
+                <tr>
+                  <td class="criteria" i18n>Age:</td>
+                  <td class="value">{{getYears(patient.birthdate)+" ans"}}</td>
+                </tr>
+                <tr>
+                  <td class="criteria" i18n>Sexe:</td>
+                  <td class="value">{{patient.sex}}</td>
+                </tr>
+                <tr>
+                  <td class="criteria" i18n>Téléphone:</td>
+                  <td class="value">{{patient.phoneNumber}}</td>
+                </tr>
+                <tr>
+                  <td class="criteria" i18n>Profession:</td>
+                  <td class="value">{{patient.profession}}</td>
+                </tr>
+                <tr>
+                  <td class="criteria" i18n>Nationalité:</td>
+                  <td class="value">{{patient.nationality}}</td>
+                </tr>
+                <tr>
+                  <td class="criteria" i18n>Adresse:</td>
+                  <td class="value">{{patient.address}}</td>
+                </tr>
+              </table>
             </div>
           </div>
         </mat-expansion-panel>
 
         <mat-expansion-panel>
           <mat-expansion-panel-header>
-            <mat-panel-title>
+            <mat-panel-title i18n>
               Contacts pour cas d'urgence
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <table class="contacts_urgences" mat-table [dataSource]="contactsUrgence">
-            <ng-container matColumnDef="Nom">
-              <th mat-header-cell *matHeaderCellDef>Nom</th>
-              <td mat-cell *matCellDef="let element">{{element.position}}</td>
+          <table class="contacts_urgences" mat-table [dataSource]="getContacts(patient$|async)">
+            <ng-container matColumnDef="nom">
+              <th mat-header-cell *matHeaderCellDef i18n>Nom</th>
+              <td mat-cell *matCellDef="let element">{{element.nom}}</td>
             </ng-container>
-            <ng-container matColumnDef="Relation">
-              <th mat-header-cell *matHeaderCellDef>Relation</th>
-              <td mat-cell *matCellDef="let element">{{element.position}}</td>
+            <ng-container matColumnDef="relation">
+              <th mat-header-cell *matHeaderCellDef i18n>Relation</th>
+              <td mat-cell *matCellDef="let element">{{element.address}}</td>
             </ng-container>
-            <ng-container matColumnDef="Numero">
-              <th mat-header-cell *matHeaderCellDef>Numéro</th>
-              <td mat-cell *matCellDef="let element">{{element.position}}</td>
+            <ng-container matColumnDef="numero">
+              <th mat-header-cell *matHeaderCellDef i18n>Numéro</th>
+              <td mat-cell *matCellDef="let element">{{element.numero}}</td>
             </ng-container>
-            <tr mat-header-row *matHeaderRowDef="['Nom', 'Relation', 'Numero']"></tr>
-            <tr mat-row *matRowDef="let row; columns: ['Nom', 'Relation', 'Numero'];"></tr>
+            <tr mat-header-row *matHeaderRowDef="['nom', 'relation', 'numero']"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['nom', 'relation', 'numero'];"></tr>
           </table>
         </mat-expansion-panel>
 
         <mat-expansion-panel>
           <mat-expansion-panel-header>
-            <mat-panel-title>
+            <mat-panel-title i18n>
               Informations médicales
             </mat-panel-title>
           </mat-expansion-panel-header>
@@ -85,24 +104,24 @@
             <tr mat-header-column *matHeaderColumnDef="['Nom', 'Relation', 'Numéro']"></tr>
             <tr mat-row *matColumnDef="let row; columns: ['Nom', 'Relation', 'Numéro'];"></tr>
           </table> -->
-          <h3>Allergies</h3>
-          <table class="allergies" mat-table [dataSource]="allergies">
-            <ng-container matColumnDef="Type">
-              <th mat-header-cell *matHeaderCellDef>Type</th>
-              <td mat-cell *matCellDef="let element">{{element.position}}</td>
+          <h3 i18n>Allergies</h3>
+          <table class="allergies" mat-table [dataSource]="getAllergies(patient$|async)">
+            <ng-container matColumnDef="type">
+              <th mat-header-cell *matHeaderCellDef i18n>Type</th>
+              <td mat-cell *matCellDef="let element">{{element.type}}</td>
             </ng-container>
-            <ng-container matColumnDef="Manifestations">
-              <th mat-header-cell *matHeaderCellDef>Manifestations</th>
-              <td mat-cell *matCellDef="let element">{{element.position}}</td>
+            <ng-container matColumnDef="manifestations">
+              <th mat-header-cell *matHeaderCellDef i18n>Manifestations</th>
+              <td mat-cell *matCellDef="let element">{{element.manifestations}}</td>
             </ng-container>
-            <tr mat-header-row *matHeaderRowDef="['Type', 'Manifestations']"></tr>
-            <tr mat-row *matRowDef="let row; columns: ['Type', 'Manifestations'];"></tr>
+            <tr mat-header-row *matHeaderRowDef="['type', 'manifestations']"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['type', 'manifestations'];"></tr>
           </table>
         </mat-expansion-panel>
       </mat-accordion>
     </div>
   </div>
   <div class="button-div">
-    <button mat-fab extended color="primary" [disabled]="disabled" (click)="getPatientProfile()">Voir profil</button>
+    <button mat-fab extended color="primary" [disabled]="disabled" (click)="getPatientProfile()" i18n>Voir profil</button>
   </div>
 </div>

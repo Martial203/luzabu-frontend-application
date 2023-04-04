@@ -4,7 +4,7 @@
     <form #radioForm="ngForm">
       <div class="bloc1" *ngFor="let radiologie of radiologieForm; let i=index" [formGroup]="radiologie">
         <mat-form-field>
-          <mat-label>Titre de l'examen radiologique</mat-label>
+          <mat-label i18n>Titre de l'examen radiologique</mat-label>
           <input matInput type="text" placeholder="Titre de l'examen radiologique" formControlName="titre">
         </mat-form-field>
         <app-chips-input label="Résultats" placeholder="Résultats..." [width]="100" [min_width]="300" [height]="70" (value)="getResultats($event, i)"></app-chips-input>
@@ -13,6 +13,6 @@
     <div class="add-button"><button mat-mini-fab (click)="onAddRadiologie()"><mat-icon>add</mat-icon></button></div>
   </div>
   <div class="footer">
-    <app-mini-footer (images)="getImages($event)" (submit)="onSubmit()" [disabled]="mainForm.invalid"></app-mini-footer>
+    <app-mini-footer (images)="getImages($event)" (submit)="onSubmit()" [disabled]="mainForm.invalid || (loading$ | async)!"></app-mini-footer>
   </div>
 </div>

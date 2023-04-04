@@ -35,10 +35,21 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+      "i18n": {
+        "sourceLocale": "fr-FR",
+        "locales": {
+          "en": {
+            "translation": "src/locale/messages.en.json",
+            "baseHref": ""
+          }
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "localize": true,
+            "i18nMissingTranslation": "error",
             "outputPath": "dist/luzabu",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -55,7 +66,10 @@
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              // "src/assets/crypto/chiffrerDonnee.js",
+              // "src/assets/crypto/cryptage.js"]
+            ]
           },
           "configurations": {
             "production": {
@@ -63,12 +77,12 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "1.5mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "188kb",
+                  "maximumError": "190kb"
                 }
               ],
               "outputHashing": "all"
@@ -119,7 +133,9 @@
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              // "src/assets/crypto/chiffrerDonnee.js",
+              // "src/assets/crypto/cryptage.js"]
           }
         }
       }

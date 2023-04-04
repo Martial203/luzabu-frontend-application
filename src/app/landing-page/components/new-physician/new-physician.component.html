@@ -1,110 +1,132 @@
-<div class="main-container">
-  <aside title="Inscription">
-    <app-landing-aside></app-landing-aside>
-  </aside>
-  <form [formGroup]="newPhysicianForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
-    <div class="all_informations">
-      <h2>Création compte médecin</h2>
-      <div>
-        <div class="qualite">
-          <mat-radio-group labelPosition="after" color="primary" formControlName="qualification">
-            <mat-radio-button value="Spécialiste">Spécialiste</mat-radio-button>
-            <mat-radio-button value="Généraliste">Généraliste</mat-radio-button>
-          </mat-radio-group>
-        </div>
-        <div class="matricule"><label>Numéro matricule: </label>
-          <input matInput type="text" placeholder="Veuillez entrer votre matricule" formControlName="matricule">
-        </div>
-        <div class="informations">
-          <mat-form-field>
-            <mat-label>Nom</mat-label>
-            <input matInput type="text" placeholder="Nom" formControlName="lastName">
-            <!-- <mat-error>{{ getControlError(newPhysicianForm.nom) }}</mat-error> -->
-          </mat-form-field>
-          <mat-form-field>
-            <mat-label>Prénom</mat-label>
-            <input matInput type="text" placeholder="Prénom" formControlName="firstName">
-            <!-- <mat-error>{{ getControlError(newPhysicianForm.prenom) }}</mat-error> -->
-          </mat-form-field>
-          <div>
-            <label>Sexe: </label>
-            <mat-radio-group labelPosition="after" color="primary" formControlName="sex">
-              <mat-radio-button value="Masculin">Masculin</mat-radio-button>
-              <mat-radio-button value="Feminin">Féminin</mat-radio-button>
-            </mat-radio-group>
+<div class="page">
+  <div class="main-container">
+    <div class="left">
+      <div class="aside">
+        <p i18n>LUZABU E-HOSPITAL</p>
+        <h1 i18n>Commencez cette expérience avec nous.</h1>
+        <p i18n> Prennez soins de vos patients comme d'habitude, et permettez leur de mieux concerver et de mieux gérer leurs données médicales à travers cet outil nouveau, qu'est le carnet de santé numérique.</p>
+        <div class="comment">
+          <p i18n>Simplement incroyable ! C'est vraiment magnifique de recevoir un patient, et d'avoir à sa disposition, aussi clairement préseneté, un ensemble d'informations à propos du profil et des antécédants médicaux du patient. Le travail m'est plus aisé ainsi</p>
+          <div class="author">
+            <div class="avatar"></div>
+            <div class="infos">
+              <p>Joe</p>
+              <p>Médecin</p>
+            </div>
           </div>
-          <mat-form-field>
-            <mat-label>Nationalité</mat-label>
-            <mat-select placeholder="Nationalité" formControlName="nationality">
-                <mat-optgroup label="-----------------------------------------------------------------------------">
-                  <mat-option value="Cameroun">Cameroun</mat-option>
-                  <mat-option value="Congo">Congo</mat-option>
-                </mat-optgroup>
-                <mat-optgroup label="-----------------------------------------------------------------------------">
-                  <mat-option *ngFor="let country of countries" [value]="country">{{ country }}</mat-option>
-                </mat-optgroup>
-                </mat-select>
-                <!-- <mat-error>{{ getControlError(newPhysicianForm.nationalite) }}</mat-error> -->
-              </mat-form-field>
-          <div>
-            <mat-form-field appearance="fill">
-              <mat-label>Date de naissance (MM/DD/YYYY)</mat-label>
-              <input matInput [matDatepicker]="picker" formControlName="birthdate">
-              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
-              <!-- <mat-error>{{ getControlError(newPhysicianForm.date_naissance) }}</mat-error> -->
-            </mat-form-field>
-            <mat-form-field>
-              <mat-label>Lieu de naissance</mat-label>
-              <input matInput type="text" placeholder="Lieu de naissance" formControlName="birthPlace">
-              <!-- <mat-error>{{ getControlError(newPhysicianForm.lieu_naissance) }}</mat-error> -->
-            </mat-form-field>
-          </div>
-          <mat-form-field>
-            <mat-label>Téléphone</mat-label>
-            <input matInput type="text" placeholder="Téléphone" formControlName="phoneNumber">
-            <!-- <mat-error>{{ getControlError(newPhysicianForm.telephone) }}</mat-error> -->
-          </mat-form-field>
-          <mat-form-field>
-            <mat-label>Adresse mail</mat-label>
-            <input matInput type="text" placeholder="Adressse mail" formControlName="email">
-            <!-- <mat-error>{{ getControlError(newPhysicianForm.email) }}</mat-error> -->
-          </mat-form-field>
-          <mat-form-field>
-            <mat-label>Ville</mat-label>
-            <input matInput type="text" placeholder="Ville" formControlName="city">
-            <!-- <mat-error>{{ getControlError(newPhysicianForm.ville) }}</mat-error> -->
-          </mat-form-field>
-          <mat-form-field>
-            <mat-label>Hôpital d'exercice</mat-label>
-            <input matInput type="text" placeholder="Hôpital d'exercice" formControlName="hopitalName">
-            <!-- <mat-error>{{ getControlError(newPhysicianForm.hopital) }}</mat-error> -->
-          </mat-form-field>
-          <mat-form-field class="certificate">
-            <mat-label>Certificat d'études</mat-label>
-            <mat-icon matSuffix matRipple><label for="file">picture_as_pdf</label></mat-icon>
-            <input type="file" id="file" accept=".pdf" (change)="onGetImage($event)">
-            <input matInput type="text" placeholder="Certificat d'études" disabled>
-            <!-- <mat-error>{{ getControlError(newPhysicianForm.certificat) }}</mat-error> -->
-          </mat-form-field>
-        </div>
-        <div>
-          <mat-form-field>
-            <mat-label>Mot de passe</mat-label>
-            <input matInput type="password" placeholder="Mot de passe" formControlName="password">
-            <mat-error></mat-error>
-          </mat-form-field>
-          <mat-form-field>
-            <mat-label>Confirmation du mot de passe</mat-label>
-            <input matInput type="password" placeholder="Confirmation du mot de passe" formControlName="confirmPassword">
-            <mat-error>{{ getControlError('password') }}</mat-error>
-          </mat-form-field>
         </div>
       </div>
     </div>
-    <p class="validation">
-      <mat-checkbox labelPosition="after" color="primary" formControlName="conditions">Accepter les <a href="/assets/Conditions_utilisation.pdf" target="_blank">conditions d'utilisations</a></mat-checkbox>
-    </p>
-    <div class="submit"><button color="primary" mat-raised-button [disabled]="newPhysicianForm.invalid">Enregistrer</button></div>
-  </form>
+    <div class="right">
+      <form [formGroup]="newPhysicianForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+        <div class="all_informations">
+          <h1 i18n>Création compte médecin</h1>
+          <div>
+            <div class="qualite">
+              <mat-radio-group labelPosition="after" color="primary" formControlName="qualification">
+                <mat-radio-button value="Spécialiste" i18n>Spécialiste</mat-radio-button>
+                <mat-radio-button value="Généraliste" i18n>Généraliste</mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <mat-form-field class="matricule"><mat-label i18n>Matricule: </mat-label>
+              <input matInput type="text" placeholder="Veuillez entrer votre matricule" formControlName="matricule">
+            </mat-form-field>
+            <div class="informations">
+              <mat-form-field>
+                <mat-label i18n>Nom</mat-label>
+                <input matInput type="text" placeholder="Nom" formControlName="lastName">
+                <!-- <mat-error>{{ getControlError(newPhysicianForm.nom) }}</mat-error> -->
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label i18n>Prénom</mat-label>
+                <input matInput type="text" placeholder="Prénom" formControlName="firstName">
+                <!-- <mat-error>{{ getControlError(newPhysicianForm.prenom) }}</mat-error> -->
+              </mat-form-field>
+              <div>
+                <label i18n>Sexe: </label>
+                <mat-radio-group labelPosition="after" color="primary" formControlName="sex">
+                  <mat-radio-button value="Masculin" i18n>Masculin</mat-radio-button>
+                  <mat-radio-button value="Feminin" i18n>Féminin</mat-radio-button>
+                </mat-radio-group>
+              </div>
+              <mat-form-field>
+                <mat-label i18n>Nationalité</mat-label>
+                <mat-select placeholder="Nationalité" formControlName="nationality">
+                    <mat-optgroup label="-----------------------------------------------------------------------------">
+                      <mat-option value="Cameroun" i18n>Cameroun</mat-option>
+                      <mat-option value="Congo" i18n>Congo</mat-option>
+                    </mat-optgroup>
+                    <mat-optgroup label="-----------------------------------------------------------------------------">
+                      <mat-option *ngFor="let country of countries" [value]="country">{{ country }}</mat-option>
+                    </mat-optgroup>
+                    </mat-select>
+                    <!-- <mat-error>{{ getControlError(newPhysicianForm.nationalite) }}</mat-error> -->
+                  </mat-form-field>
+              <div>
+                <mat-form-field appearance="fill">
+                  <mat-label i18n>Date de naissance (MM/DD/YYYY)</mat-label>
+                  <input matInput [matDatepicker]="picker" formControlName="birthdate">
+                  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                  <!-- <mat-error>{{ getControlError(newPhysicianForm.date_naissance) }}</mat-error> -->
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label i18n>Lieu de naissance</mat-label>
+                  <input matInput type="text" placeholder="Lieu de naissance" formControlName="birthPlace">
+                  <!-- <mat-error>{{ getControlError(newPhysicianForm.lieu_naissance) }}</mat-error> -->
+                </mat-form-field>
+              </div>
+              <mat-form-field>
+                <mat-label i18n>Téléphone</mat-label>
+                <input matInput type="text" placeholder="Téléphone" formControlName="phoneNumber">
+                <!-- <mat-error>{{ getControlError(newPhysicianForm.telephone) }}</mat-error> -->
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label i18n>Adresse mail</mat-label>
+                <input matInput type="text" placeholder="Adressse mail" formControlName="email">
+                <!-- <mat-error>{{ getControlError(newPhysicianForm.email) }}</mat-error> -->
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label i18n>Ville</mat-label>
+                <input matInput type="text" placeholder="Ville" formControlName="city">
+                <!-- <mat-error>{{ getControlError(newPhysicianForm.ville) }}</mat-error> -->
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label i18n>Hôpital d'exercice</mat-label>
+                <input matInput type="text" placeholder="Hôpital d'exercice" formControlName="hopitalName">
+                <!-- <mat-error>{{ getControlError(newPhysicianForm.hopital) }}</mat-error> -->
+              </mat-form-field>
+              <mat-form-field class="certificate">
+                <mat-label i18n>Certificat d'études</mat-label>
+                <mat-icon matSuffix matRipple><label for="file">picture_as_pdf</label></mat-icon>
+                <input type="file" id="file" accept=".pdf" (change)="onGetImage($event)">
+                <input matInput type="text" placeholder="Certificat d'études" disabled>
+                <!-- <mat-error>{{ getControlError(newPhysicianForm.certificat) }}</mat-error> -->
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field>
+                <mat-label i18n>Mot de passe</mat-label>
+                <input matInput type="password" placeholder="Mot de passe" formControlName="password">
+                <mat-error></mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label i18n>Confirmation du mot de passe</mat-label>
+                <input matInput type="password" placeholder="Confirmation du mot de passe" formControlName="confirmPassword">
+                <mat-error>{{ getControlError('password') }}</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <p class="validation">
+          <mat-checkbox labelPosition="after" color="primary" formControlName="conditions" i18n>Accepter les <a href="/assets/Conditions_utilisation.pdf" target="_blank">conditions d'utilisations</a></mat-checkbox>
+        </p>
+        <div *ngIf="loading || complete" class="spinner">
+          <mat-spinner *ngIf="loading" [diameter]="25"></mat-spinner>
+          <p *ngIf="complete" i18n><mat-icon>done</mat-icon>Médécin enregistré avec succès !</p>
+        </div>
+        <div class="submit"><button color="primary" mat-raised-button [disabled]="newPhysicianForm.invalid || loading" i18n>Enregistrer</button></div>
+      </form>
+    </div>
+  </div>
 </div>

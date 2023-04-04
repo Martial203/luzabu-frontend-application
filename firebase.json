@@ -1,7 +1,7 @@
 {
   "hosting": {
     "site": "luzabu-medecin",
-    "public": "public",
+    "public": "dist/luzabu",
     "ignore": [
       "firebase.json",
       "**/.*",

@@ -1,7 +1,22 @@
 <div class="main-container">
   <aside><app-aside></app-aside></aside>
-  <main>
-    <header><app-header></app-header></header>
-    <div><router-outlet></router-outlet></div>
-  </main>
+  <mat-drawer-container class="example-container" [hasBackdrop]="true">
+    <mat-drawer #drawer class="example-sidenav" mode="push">
+      <app-aside></app-aside>
+    </mat-drawer>
+
+    <main>
+      <header><app-header></app-header></header>
+      <div><router-outlet></router-outlet></div>
+    </main>
+  </mat-drawer-container>
+
+</div>
+
+
+
+<div class="sidenav-button">
+  <button type="button" mat-icon-button (click)="drawer.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
 </div>

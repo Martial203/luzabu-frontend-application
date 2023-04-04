@@ -23,7 +23,7 @@
   <ngx-scanner-qrcode #action="scanner" [config]="config" (event)="onEvent($event)"></ngx-scanner-qrcode>
 
   <!-- loading -->
-  <p *ngIf="action.isLoading">⌛ Loading...</p>
+  <p *ngIf="action.isLoading" i18n>⌛ Chargement en cours...</p>
 
   <div class="torch">
       <!-- isTorch -->
@@ -34,7 +34,9 @@
   </div>
 
   <div class="actions">
-    <button mat-icon-button mat-dialog-close [disabled]="action.isLoading" (click)="handle(action, action.isStart ? 'stop' : 'start')">
-      <mat-icon> {{ action.isStart ? 'camera_on' : 'camera_off' }}</mat-icon>  
+    <button mat-icon-button mat-dialog-close [disabled]="action.isLoading" (click)="handle(action, action.isStart ? 'stop' : 'start')" i18n>
+      <!-- <mat-icon> {{ action.isStart ? 'camera_on' : 'camera_off' }}</mat-icon>   -->
+      Annuler
     </button>
   </div>
+</div>
