@@ -17,6 +17,28 @@
     .right{
       flex: 0.9;
       background-color: $blue;
+      background-image: url('/assets/doctor-profile-small.png');
+      background-repeat: no-repeat;
+      background-position: 50% 99%;
+      text-align: center;
+      color: #ffffff;
+      font-size: 25px;
+      padding: 10px;
+      padding-top: 20px;
+      @media (max-width: 740px){
+        &{
+          display: none;
+        }
+      }
+      img{
+        width: 180px;
+        text-shadow: 5px 5px 5px;
+      }
+      p{
+        margin-top: 17px;
+        line-height: 1.2em;
+        text-shadow: 5px 3px 5px;
+      }
     }
     .left{
       flex: 1;

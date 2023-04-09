@@ -118,5 +118,17 @@ export class PatientService {
     console.log(medication)
   }
 
+  getYears(): number|null{
+    if(this._patient$.value instanceof Number){
+      return this.getYear(this._patient$.value['birthdate']);
+    }else{
+      return null;
+    }
+  }
+
+  private getYear(date: string|Date): number{
+    const d = new Date().getTime() - new Date(date).getTime();
+    return Math.floor(d/31536000000);
+  }
 
 }

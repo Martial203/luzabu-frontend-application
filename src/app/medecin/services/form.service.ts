@@ -8,7 +8,7 @@ import { PatientService } from './patient.service';
 })
 export class FormService {
 
-  constructor(private patientService: PatientService, private medecinService: MedecinService) { }
+  constructor(private patientService: PatientService, private medecinService: MedecinService) {}
 
   addHeaders(object: any): any{
     const headers = {

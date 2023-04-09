@@ -10,6 +10,9 @@ import { AuthMedecinService } from '../../services/auth-medecin.service';
 })
 export class LandingPageComponent {
 
+  redirect(): void{
+    window.location.href="https://luzabu.web.app";
+  }
   // loginForm!: FormGroup;
   // loading: boolean = false;
 

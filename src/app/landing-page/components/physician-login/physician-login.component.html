@@ -17,7 +17,7 @@
         <p i18n>Pas encore de compte ? <a routerLink="/new-physician">Inscrivez vous ici</a></p>
         <div class="buttons">
           <div *ngIf="loading || complete || error" class="spinner">
-            <mat-spinner *ngIf="loading" [diameter]="25"></mat-spinner>
+            <div *ngIf="loading"><mat-spinner [diameter]="25"></mat-spinner></div>
             <div *ngIf="error" class="error-div" i18n><mat-icon>report_problem</mat-icon>Echec d'authentification, veuillez ressayer !</div>
             <p *ngIf="complete" i18n><mat-icon>verified_user</mat-icon>Authentification effectuée avec succès !</p>
           </div>
@@ -26,6 +26,8 @@
       </form>
     </div>
     <div class="right">
+      <img src="/assets/logo.png">
+      <p>Pour une meilleure prise en charge des nos patients</p>
     </div>
   </div>
 </div>

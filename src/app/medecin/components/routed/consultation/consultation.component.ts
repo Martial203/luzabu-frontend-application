@@ -49,13 +49,13 @@ export class ConsultationComponent {
 
     this.examenCliniqueForm = this.formBuilder.group({
       motif_consultation: [null, [Validators.required]],
-      age: [null, [Validators.required]],
-      taille: [null, [Validators.required]],
-      temperature: [null, [Validators.required]],
-      pression_arterielle: [null, [Validators.required]],
-      poids: [null, [Validators.required]],
-      pouls: [null, [Validators.required]],
-      spo2: [null, [Validators.required]]
+      age: [this.patientService.getYears(), [Validators.required]],
+      taille: [null, [Validators.required, Validators.min(0.1)]],
+      temperature: [null, [Validators.required, Validators.min(0)]],
+      pression_arterielle: [null, [Validators.required, Validators.min(0)]],
+      poids: [null, [Validators.required, Validators.min(0)]],
+      pouls: [null, [Validators.required, Validators.min(0)]],
+      spo2: [null, [Validators.required, Validators.min(0)]]
     }, {
       updateOn: 'blur'
     });
@@ -134,4 +134,8 @@ export class ConsultationComponent {
     images.forEach(image => this.imagesFiles.push(this.formService.toFile(image, "name", "image/jpg")));
   }
 
+  getYears(date: string|Date): number{
+    const d = new Date().getTime() - new Date(date).getTime();
+    return Math.floor(d/31536000000);
+  }
 }

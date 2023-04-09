@@ -4,7 +4,7 @@
     <form #examenForm="ngForm">
       <div class="accordion">
         <div class="expansion" *ngFor="let examen of examenGeneralForm; let i=index" [formGroup]="examen">
-          <button (click)="onAddExamenGroup()" mat-mini-fab disableRipple matRipple><mat-icon>add</mat-icon></button>
+          <button (click)="onGroupRemoveExamen(i)" mat-icon-button disableRipple matRipple><mat-icon>cancel_outline</mat-icon></button>
 
           <app-autocomplete-input [width]="40" [min_width]="250" label="Examen" placeholder="Examen" (value)="onFillExamen($event, i)"></app-autocomplete-input>
 
@@ -13,6 +13,7 @@
         </div>
       </div>
     </form>
+    <div class="new"><button mat-button (click)="onAddExamenGroup()"><mat-icon>add</mat-icon>Ajouter un examen</button></div>
   </div>
   <div class="footer">
     <app-mini-footer (images)="getImages($event)" (submit)="onSubmit()" [disabled]="mainForm.invalid || (loading$ | async)!"></app-mini-footer>

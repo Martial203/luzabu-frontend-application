@@ -2,18 +2,12 @@
   <div class="main-container">
     <div class="left">
       <div class="aside">
-        <p i18n>LUZABU E-HOSPITAL</p>
+        <p i18n class="img"><img src="/assets/logo.png"></p>
         <h1 i18n>Commencez cette expérience avec nous.</h1>
-        <p i18n> Prennez soins de vos patients comme d'habitude, et permettez leur de mieux concerver et de mieux gérer leurs données médicales à travers cet outil nouveau, qu'est le carnet de santé numérique.</p>
+        <p i18n class="text"> Prennez soins de vos patients comme d'habitude, et permettez leur de mieux concerver et de mieux gérer leurs données médicales à travers cet outil nouveau, qu'est le carnet de santé numérique.</p>
         <div class="comment">
           <p i18n>Simplement incroyable ! C'est vraiment magnifique de recevoir un patient, et d'avoir à sa disposition, aussi clairement préseneté, un ensemble d'informations à propos du profil et des antécédants médicaux du patient. Le travail m'est plus aisé ainsi</p>
-          <div class="author">
-            <div class="avatar"></div>
-            <div class="infos">
-              <p>Joe</p>
-              <p>Médecin</p>
-            </div>
-          </div>
+          <p>Joe John, Medecin</p>
         </div>
       </div>
     </div>
@@ -119,7 +113,7 @@
           </div>
         </div>
         <p class="validation">
-          <mat-checkbox labelPosition="after" color="primary" formControlName="conditions" i18n>Accepter les <a href="/assets/Conditions_utilisation.pdf" target="_blank">conditions d'utilisations</a></mat-checkbox>
+          <mat-checkbox labelPosition="after" color="primary" formControlName="conditions"></mat-checkbox>Pour valider votre inscription, veuillez lire et accepter les <a mat-button (click)="openDialog()">conditions d'utilisation</a>
         </p>
         <div *ngIf="loading || complete" class="spinner">
           <mat-spinner *ngIf="loading" [diameter]="25"></mat-spinner>

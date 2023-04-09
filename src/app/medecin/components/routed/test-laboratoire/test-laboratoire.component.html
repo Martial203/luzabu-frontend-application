@@ -3,6 +3,9 @@
   <div class="form-container">
     <form #laboForm="ngForm">
       <div *ngFor="let test of testForm; let i=index" [formGroup]="test">
+        <button mat-mini-fab color="default" (click)="onRemoveTest(i)">
+          <mat-icon>delete</mat-icon>
+        </button>
         <div class="bloc1">
           <mat-form-field>
             <mat-label i18n>Type de test</mat-label>

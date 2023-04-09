@@ -4,7 +4,11 @@
     <form #ordonnanceForm="ngForm">
       <mat-accordion>
         <mat-expansion-panel *ngFor="let medicament of medicamentForm; let i=index" [formGroup]="medicament" [expanded]="i===0">
-          <mat-expansion-panel-header><mat-panel-title>{{medicament.value.nom ? medicament.value.nom : "Medicament "+(i+1)}} {{medicament.value.dosage ? "("+medicament.value.dosage+")" : ""}}</mat-panel-title></mat-expansion-panel-header>
+          <mat-expansion-panel-header><mat-panel-title>{{medicament.value.nom ? medicament.value.nom : "Medicament "+(i+1)}} {{medicament.value.dosage ? "("+medicament.value.dosage+")" : ""}}</mat-panel-title>
+            <button mat-icon-button (click)="onRemoveMedicament(i)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-expansion-panel-header>
           <div class="panel-content">
             <div class="bloc1">
               <mat-form-field>

@@ -44,12 +44,12 @@
         <div class="bloc1">
           <table *ngIf="consultation.examen_clinique as examClin">
             <tr><td>Motif de consultation</td><td>{{examClin.motif_consultation}}</td></tr>
-            <tr><td>Taille patient</td><td>{{examClin.age}}</td></tr> 
-            <tr><td>Taille patient</td><td>{{examClin.taille}}</td></tr> 
+            <tr><td>Taille patient</td><td>{{examClin.age}}</td></tr>
+            <tr><td>Taille patient</td><td>{{examClin.taille}}</td></tr>
             <tr><td>Température</td><td>{{examClin.temperature}}</td></tr>
-            <tr><td>Pression artérielle</td><td>{{examClin.pression_arterielle}}</td></tr> 
-            <tr><td>Poids du patient</td><td>{{examClin.poids}}</td></tr> 
-            <tr><td>Pouls du patient</td><td>{{examClin.pouls}}</td></tr> 
+            <tr><td>Pression artérielle</td><td>{{examClin.pression_arterielle}}</td></tr>
+            <tr><td>Poids du patient</td><td>{{examClin.poids}}</td></tr>
+            <tr><td>Pouls du patient</td><td>{{examClin.pouls}}</td></tr>
             <tr><td>Spo2 du patient</td><td>{{examClin.spo2}}</td></tr>
           </table>
         </div>
@@ -67,7 +67,7 @@
               </ng-container>
               <tr mat-header-row *matHeaderRowDef="['symptome', 'commentaire']"></tr>
               <tr mat-row *matRowDef="let row; columns: ['symptome', 'commentaire'];"></tr>
-            </table>  
+            </table>
           </div>
           <div class="history">
             <h2>Antécédents</h2>

@@ -13,13 +13,13 @@ import { TranslateService } from '@ngx-translate/core';
 export class AppComponent {
 
   @HostBinding('class') className = '';
-  
+
   language$!: Observable<'french'|'english'>;
   darkTheme$!: Observable<boolean>;
 
-  constructor(private appService: AppService, private overlay: OverlayContainer, private translate: TranslateService){  
-    translate.setDefaultLang('fr');
-    translate.use('fr');
+  constructor(private appService: AppService, private overlay: OverlayContainer){
+    // translate.setDefaultLang('fr');
+    // translate.use('fr');
   }
   ngOnInit(): void {
     this.darkTheme$ = this.appService.darkTheme$;

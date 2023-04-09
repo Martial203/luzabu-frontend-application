@@ -36,7 +36,7 @@
       "sourceRoot": "src",
       "prefix": "app",
       "i18n": {
-        "sourceLocale": "fr-FR",
+        "sourceLocale": "fr",
         "locales": {
           "en": {
             "translation": "src/locale/messages.en.json",
@@ -48,7 +48,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "localize": true,
+            "localize": false,
             "i18nMissingTranslation": "error",
             "outputPath": "dist/luzabu",
             "index": "src/index.html",
@@ -77,7 +77,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1.5mb"
+                  "maximumError": "2.5mb"
                 },
                 {
                   "type": "anyComponentStyle",

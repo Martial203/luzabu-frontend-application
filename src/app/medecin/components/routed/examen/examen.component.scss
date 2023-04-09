@@ -12,7 +12,7 @@
     background-color: #399ed1;
     margin: 5px auto;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     form{
@@ -47,6 +47,9 @@
           }
         }
       }
+    }
+    .new{
+      
     }
   }
   .footer{

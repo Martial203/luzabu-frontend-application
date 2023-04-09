@@ -1,8 +1,9 @@
+'use strict';
 const crypto = require('crypto');
 const { verifyHashedData } = require("../services/cryptage");
 
 const algorithm = 'aes-256-cbc';
- 
+
 // pad user password to 32chars before entering in bd
 // e.g passwd = "123"; passwd.padEnd(32, "_é-_è&éè")
 // inputText.normalize('NFC');
@@ -17,7 +18,7 @@ const algorithm = 'aes-256-cbc';
 
 
 /**
- * 
+ *
  * @param {*} userpassword : String
  * @returns Object
  */
@@ -33,7 +34,7 @@ const encrypt_key = (userpassword) => {
 
     const iv = crypto.randomBytes(16);
     const key = crypto.randomBytes(32).toString('hex');
-    let cipher = crypto.createCipheriv(algorithm, Buffer.from(entered_pass, 'utf-8').subarray(0,32), iv); 
+    let cipher = crypto.createCipheriv(algorithm, Buffer.from(entered_pass, 'utf-8').subarray(0,32), iv);
     // added subarray() for strings with accents whereby the corresponding bufferArray were >32bytes
     let encrypted = cipher.update(key);
     encrypted = Buffer.concat([encrypted, cipher.final()]);
@@ -55,12 +56,12 @@ const decrypt_key = async (ciphertext, userpassword, userhash) => {
 
         let iv = Buffer.from(ciphertext.iv, 'hex');
         let encryptedText = Buffer.from(ciphertext.encryptedData, 'hex');
-    
+
         let decipher = crypto.createDecipheriv(algorithm, Buffer.from(entered_pass, 'utf-8').subarray(0,32), iv);
-    
+
         let decrypted = decipher.update(encryptedText);
         decrypted = Buffer.concat([decrypted, decipher.final()]);
-    
+
         return decrypted.toString();
     }
     else return false;
@@ -91,7 +92,7 @@ const encrypt_data = async (data, autokeyhash, userpassword, userhash) => {
 
 
 const decrypt_data = async(ciphertext, stored_secretekey, userpassword, userhash) => {
-    
+
     temp = await verifyHashedData(userpassword, userhash);
     if (temp===true){
         entered_pass = userpassword
@@ -106,12 +107,12 @@ const decrypt_data = async(ciphertext, stored_secretekey, userpassword, userhash
         key = await decrypt_key(stored_secretekey, userpassword, userhash)
         let iv = Buffer.from(ciphertext.iv, 'hex');
         let encryptedText = Buffer.from(ciphertext.encryptedData, 'hex');
-    
+
         let decipher = crypto.createDecipheriv(algorithm, Buffer.from(key, 'hex'), iv);
-    
+
         let decrypted = decipher.update(encryptedText);
         decrypted = Buffer.concat([decrypted, decipher.final()]);password
-    
+
         return decrypted.toString();
     }
     else return false;

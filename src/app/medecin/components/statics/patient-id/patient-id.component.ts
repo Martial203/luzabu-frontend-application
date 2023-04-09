@@ -11,7 +11,7 @@ import { QrCodeScannerComponent } from '../qr-code-scanner/qr-code-scanner.compo
 })
 export class PatientIdComponent {
   @Input() input: boolean = false;
-  idControl: FormControl = new FormControl({value:'', disabled: true});
+  idControl: FormControl = new FormControl({value:'', disabled: false});
   @Output() cardId: EventEmitter<string> = new EventEmitter<string>();
   value!: string;
 
@@ -21,6 +21,7 @@ export class PatientIdComponent {
     this.idControl.valueChanges.subscribe(val => this.cardId.emit(val));
     this.value = this.patientService.getPatientId();
     if(this.value!=="") this.idControl.setValue(this.value);
+    this.detectCamera();
   }
 
   openDialog(): void{
@@ -29,6 +30,22 @@ export class PatientIdComponent {
     dialogRef.afterClosed().subscribe(result => {
       this.idControl.setValue(result);
       console.log(`Dialog result: ${result}`);
+    });
+  }
+
+
+  detectCamera(): void{
+    navigator.mediaDevices.enumerateDevices()
+    .then(devices => {
+      devices.forEach(device => {
+        if(device.kind=="videoinput"){
+          this.idControl.disable();
+        }
+      });
+    })
+    .catch(function(err) {
+      console.log(err.name + ": " + err.message);
+      return false;
     });
   }
 }

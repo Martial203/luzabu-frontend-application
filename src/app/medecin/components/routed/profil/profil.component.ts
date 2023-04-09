@@ -38,6 +38,7 @@ export class ProfilComponent {
     this.cardId = cardId;
     this.disabled = cardId==="";
     console.log("card : ", cardId, this.disabled);
+    if(cardId.length>7) this.getPatientProfile();
   }
 
   getPatientProfile(): void{

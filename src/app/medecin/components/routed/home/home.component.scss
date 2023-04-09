@@ -9,10 +9,18 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    .content{
+      border: none;
+      background-color: #00000025;
+      font-weight: bold;
+      p:nth-of-type(2){
+        font-size: 20px;
+      }
+    }
     div{
       flex: 1;
       min-width: 200px;
-      min-height: 200px; 
+      min-height: 200px;
       border: solid 1px;
       margin: 1px;
       display: flex;
@@ -28,6 +36,30 @@
         text-align: center;
         flex: 3;
       }
+    }
+  }
+  .row1{
+    .col1{
+      background-image: url('/assets/istockphoto-1301555107-612x612-1.jpg');
+      background-size: cover;
+    }
+    .col2{
+      background-image: url('/assets/istockphoto-1173046912-612x612-1.jpg');
+      background-size: cover;
+    }
+  }
+  .row2{
+    .col1{
+      background-image: url('/assets/istockphoto-1254897750-612x612-1.jpg');
+      background-size: cover;
+    }
+    .col2{
+      background-image: url('/assets/img.jpeg');
+      background-size: cover;
+    }
+    .col3{
+      background-image: url('/assets/istockphoto-637851338-612x612.jpg');
+      background-size: cover;
     }
   }
 }

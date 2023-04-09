@@ -1,9 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { confirmEqualValidator } from 'src/app/core/validators/confirm-equal.validator';
 import { Medecin } from 'src/app/medecin/models/medecin';
 import { AuthMedecinService } from '../../services/auth-medecin.service';
+import { UsagePolicyComponent } from './../../../medecin/components/statics/usage-policy/usage-policy.component';
 
 @Component({
   selector: 'app-new-physician',
@@ -18,7 +20,7 @@ export class NewPhysicianComponent {
 
   @ViewChild('file') file!: FormControl;
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private medecinAuthService: AuthMedecinService){}
+  constructor(private router: Router, private formBuilder: FormBuilder, private medecinAuthService: AuthMedecinService, private dialog: MatDialog){}
 
   ngOnInit(): void{
     this.initFormControls();
@@ -47,11 +49,11 @@ export class NewPhysicianComponent {
       validators: [confirmEqualValidator('password', 'confirmPassword')],
       updateOn: 'blur'
     });
+    this.newPhysicianForm.controls['conditions'].disable();
   }
 
   onSubmit(): void{
     console.log(this.newPhysicianForm.value);
-    this.loading = true;
     if(this.newPhysicianForm.valid){
       const formValue = this.newPhysicianForm.value;
       delete formValue.conditions;
@@ -62,14 +64,19 @@ export class NewPhysicianComponent {
         registrationDate: new Date()
       }
 
+      this.loading = true;
       this.medecinAuthService.signUp(physician).subscribe({
         next: (val) => console.log(val),
-        error: (err) => console.log(err),
+        error: (err) => {
+          this.loading = false;
+          this.complete = true;
+        },
         complete: () => {
           this.loading = false;
+          this.complete = true;
           this.router.navigateByUrl('/medecin');
         }
-      });
+      });0
     }
 
   }
@@ -94,4 +101,10 @@ export class NewPhysicianComponent {
 
   countries : string[] = ["Afghanistan","Afrique_du_Sud","Albanie","Algerie","Allemagne","Andorre","Angola","Antigua-et-Barbuda","Arabie_saoudite","Argentine","Armenie","Australie","Autriche","Azerbaidjan","Bahamas","Bahrein","Bangladesh","Barbade","Belau","Belgique","Belize","Benin","Bhoutan","Bielorussie","Birmanie","Bolivie","Bosnie-Herzégovine","Botswana","Bresil","Brunei","Bulgarie","Burkina","Burundi","Cambodge","Cameroun","Canada","Cap-Vert","Chili","Chine","Chypre","Colombie","Comores","Congo","Cook","Coree_du_Nord","Coree_du_Sud","Costa_Rica","Cote_Ivoire","Croatie","Cuba","Danemark","Djibouti","Dominique","Egypte","Emirats_arabes_unis","Equateur","Erythree","Espagne","Estonie","Etats-Unis","Ethiopie","Fidji","Finlande","France","Gabon","Gambie","Georgie","Ghana","Grèce","Grenade","Guatemala","Guinee","Guinee-Bissao","Guinee_equatoriale","Guyana","Haiti","Honduras","Hongrie","Inde","Indonesie","Iran","Iraq","Irlande","Islande","Israël","Italie","Jamaique","Japon","Jordanie","Kazakhstan","Kenya","Kirghizistan","Kiribati","Koweit","Laos","Lesotho","Lettonie","Liban","Liberia","Libye","Liechtenstein","Lituanie","Luxembourg","Macedoine","Madagascar","Malaisie","Malawi","Maldives","Mali","Malte","Maroc","Marshall","Maurice","Mauritanie","Mexique","Micronesie","Moldavie","Monaco","Mongolie","Mozambique","Namibie","Nauru","Nepal","Nicaragua","Niger","Nigeria","Niue","Norvège","Nouvelle-Zelande","Oman","Ouganda","Ouzbekistan","Pakistan","Panama","Papouasie-Nouvelle_Guinee","Paraguay","Pays-Bas","Perou","Philippines","Pologne","Portugal","Qatar","Republique_centrafricaine","Republique_dominicaine","Republique_tcheque","Roumanie","Royaume-Uni","Russie","Rwanda","Saint-Christophe-et-Nieves","Sainte-Lucie","Saint-Marin","Saint-Siège","Saint-Vincent-et-les_Grenadines","Salomon","Salvador","Samoa_occidentales","Sao_Tome-et-Principe","Senegal","Seychelles","Sierra_Leone","Singapour","Slovaquie","Slovenie","Somalie","Soudan","Sri_Lanka","Sued","Suisse","Suriname","Swaziland","Syrie","Tadjikistan","Tanzanie","Tchad","Thailande","Togo","Tonga","Trinite-et-Tobago","Tunisie","Turkmenistan","Turquie","Tuvalu","Ukraine","Uruguay","Vanuatu","Venezuela","Viet_Nam","Yemen","Yougoslavie","Zaire","Zambie","Zimbabwe"];
 
+  openDialog(): void{
+    const dialogRef = this.dialog.open(UsagePolicyComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      this.newPhysicianForm.controls['conditions'].setValue(result);
+    })
+  }
 }

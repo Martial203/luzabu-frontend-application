@@ -11,5 +11,8 @@
     text-align: center;
     padding: 100px;
     margin: 100px;
+    &:hover{
+      cursor: pointer;
+    }
   }
 }

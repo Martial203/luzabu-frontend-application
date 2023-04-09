@@ -24,23 +24,21 @@ export class HistoriqueComponent {
     console.log("joe");
     this.initObservables();
     this.route.params.subscribe(val => this.categorie = val['categorie']);
-    this.patientService.getPatient('UIECC2000');
   }
 
   initObservables(): void{
     this.patient$ = this.patientService.patient$;
     this.loading$ = this.patientService.loading$;
-    this.error$ = this.patientService.error$;    
+    this.error$ = this.patientService.error$;
   }
 
   getCardId(cardId: string): void{
     this.cardId = cardId;
     this.disabled = cardId==="";
+    if(cardId.length>7) this.getPatientHistory();
   }
 
   getPatientHistory(): void{
     this.patientService.getPatient(this.cardId);
   }
-
-
 }

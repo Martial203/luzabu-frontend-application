@@ -37,6 +37,7 @@ import { NgxScannerQrcodeModule } from 'ngx-scanner-qrcode';
 import { ConsultationsListComponent } from './components/routed/historique/consultations-list/consultations-list.component';
 import { MedicationsListComponent } from './components/routed/historique/medications-list/medications-list.component';
 import { HttpClientModule } from '@angular/common/http';
+import { UsagePolicyComponent } from './components/statics/usage-policy/usage-policy.component';
 
 
 
@@ -74,7 +75,8 @@ import { HttpClientModule } from '@angular/common/http';
     QrCodeScannerComponent,
     SafeSourcePipe,
     ConsultationsListComponent,
-    MedicationsListComponent
+    MedicationsListComponent,
+    UsagePolicyComponent
   ],
   imports: [
     CommonModule,
